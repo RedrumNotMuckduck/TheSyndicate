@@ -24,10 +24,8 @@ namespace TheSyndicate
         static void Main(string[] args)
         {
             ShowWindow(ThisConsole, MAXIMIZE);
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.Start();
         }
-
-
     }
 }

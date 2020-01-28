@@ -4,26 +4,32 @@ using System.Text;
 
 namespace TheSyndicate
 {
-    public class Scenes
+    public class Scene
     {
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
-        public Dictionary<int, string> Destinations { get; private set; }
+        public string[] Destinations { get; private set; }
         public string ActualDestinationId { get; private set; }
         public bool Start { get; private set; }
 
 
-        public Scenes(string id, string text, string[] options, Dictionary<int, string> destinations, Scenes actualDestinationId, bool start)
+        public Scene(string id, string text, string[] options, string[] destinations, bool start)
         {
             this.Id = id;
             this.Text = text;
             this.Options = options;
             this.Destinations = destinations;
-            this.ActualDestinationId = actualDestinationId;
+            this.ActualDestinationId = null;
             this.Start = start;
         }
 
+        public void Play()
+        {
+            RenderText();
+            RenderOptions();
+            GetUserInput();
+        }
         void RenderText()
         {
             ClearConsole();
@@ -48,13 +54,13 @@ namespace TheSyndicate
             }
             while (!IsValidInput(selectedOption));
 
-            GetDestination(selectedOption);
+            SetDestinationId(selectedOption);
         }
 
         bool IsValidInput(int selectedOption)
         {
             int numberOfOptions = this.Options.Length;
-            return (selectedOption > 0 && selectedOption <= numberOfOptions) ? true : false;
+            return selectedOption > 0 && selectedOption <= numberOfOptions;
         }
 
         void ClearConsole()
@@ -62,10 +68,14 @@ namespace TheSyndicate
             Console.Clear();
         }
 
-        string GetDestination(int selectedOption)
+        void SetDestinationId(int selectedOption)
         {
             this.ActualDestinationId = this.Destinations[selectedOption - 1];
-            return ActualDestinationId;
+        }
+        
+        public bool HasNextScenes()
+        {
+            return Destinations.Length > 0;
         }
 
         void Save()
