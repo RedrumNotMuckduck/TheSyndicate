@@ -27,6 +27,7 @@ namespace TheSyndicate
         public void Play()
         {
             RenderText();
+            RenderInstructions();
             RenderOptions();
             GetUserInput();
         }
@@ -36,6 +37,13 @@ namespace TheSyndicate
             Console.WriteLine(this.Text);
         }
         
+        void RenderInstructions()
+        {
+            if (this.Options.Length > 0)
+            {
+                Console.WriteLine("\n\n\n\nWhat will you do next?");
+            }
+        }
         void RenderOptions()
         {
             for(int i = 0; i < this.Options.Length; i++) 
