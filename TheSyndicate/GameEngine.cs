@@ -9,7 +9,7 @@ namespace TheSyndicate
 {
     class GameEngine
     {
-        private string PATH_TO_STORY = @"\assets\story.json";
+        private string PATH_TO_STORY = @"..\..\..\assets\story.json";
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
 
