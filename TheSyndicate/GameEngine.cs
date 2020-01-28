@@ -10,7 +10,7 @@ namespace TheSyndicate
     class GameEngine
     {
         private string PATH_TO_STORY = @"\assets\story.json";
-        private List<Scene> Scenes { get; set; }
+        private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
 
         public GameEngine()
@@ -25,11 +25,25 @@ namespace TheSyndicate
             {
                 PlayScene();
             }
+            CurrentScene.Play();
         }
 
         private void LoadScenes()
         {
-            Scenes = ConvertStoryFromJsonToScenes();
+            Scenes = GetScenes();
+        }
+
+        private Dictionary<string, Scene> GetScenes()
+        {
+            List<Scene> scenes = ConvertStoryFromJsonToScenes();
+            Dictionary<string, Scene> sceneIdsToScene = new Dictionary<string, Scene>();
+            
+            foreach(Scene scene in scenes)
+            {
+                sceneIdsToScene[scene.Id] = scene;
+            }
+
+            return sceneIdsToScene;
         }
 
         // https://stackoverflow.com/questions/18192357/deserializing-json-object-array-with-json-net
@@ -51,7 +65,13 @@ namespace TheSyndicate
 
         private Scene GetFirstScene()
         {
-            return Scenes.Single(scene => scene.start == true);
+            Scene firstScene = null;
+            foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+            {
+                if (scene.Value.Start == true)
+                firstScene = scene.Value;
+            }
+            return firstScene;
         }
 
         private void PlayScene()
@@ -62,8 +82,7 @@ namespace TheSyndicate
 
         private Scene GetNextScene()
         {
-            return CurrentScene = CurrentScene.ActualDesination;
+            return this.Scenes[CurrentScene.ActualDestinationId];
         }
-
     }
 }
