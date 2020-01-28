@@ -4,28 +4,29 @@ using System.Text;
 
 namespace TheSyndicate
 {
-    public class Scene
+    public class Scenes
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public string[] Options { get; set; }
-        public Dictionary<int, string> Destinations { get; set; }
-        public Scene ActualDestination { get; set; }
-        public bool Start { get; set; }
+        public string Id { get; private set; }
+        public string Text { get; private set; }
+        public string[] Options { get; private set; }
+        public Dictionary<int, string> Destinations { get; private set; }
+        public string ActualDestinationId { get; private set; }
+        public bool Start { get; private set; }
 
 
-        public Scene(string id, string text, string[] options, Dictionary<int, string> destinations, Scene actualDestination, bool start)
+        public Scenes(string id, string text, string[] options, Dictionary<int, string> destinations, Scenes actualDestinationId, bool start)
         {
             this.Id = id;
             this.Text = text;
             this.Options = options;
             this.Destinations = destinations;
-            this.ActualDestination = actualDestination;
+            this.ActualDestinationId = actualDestinationId;
             this.Start = start;
         }
 
         void RenderText()
         {
+            ClearConsole();
             Console.WriteLine(this.Text);
         }
         
@@ -39,37 +40,32 @@ namespace TheSyndicate
 
         void GetUserInput()
         {
-            ConsoleKeyInfo keyPress;
+            int selectedOption;
+
             do
             {
-                keyPress = Console.ReadKey(true);
-                Console.WriteLine(IsValidInput(keyPress.KeyChar));
+                Int32.TryParse(Console.ReadLine(), out selectedOption);
             }
-            while (!IsValidInput(keyPress.KeyChar));
+            while (!IsValidInput(selectedOption));
 
-            int selectedOption = keyPress.KeyChar - 49;
             GetDestination(selectedOption);
         }
 
-        bool IsValidInput(char keyPress)
+        bool IsValidInput(int selectedOption)
         {
-            if (this.Options.Length == 3)
-                return (keyPress > 48 && keyPress < 52) ? true : false;
-            else if (this.Options.Length == 2)
-                return (keyPress > 48 && keyPress < 51) ? true : false;
-            else
-                return false;
+            int numberOfOptions = this.Options.Length;
+            return (selectedOption > 0 && selectedOption <= numberOfOptions) ? true : false;
         }
 
         void ClearConsole()
         {
-            
+            Console.Clear();
         }
 
         string GetDestination(int selectedOption)
         {
-            string sceneId = this.Destinations[selectedOption];
-            return sceneId;
+            this.ActualDestinationId = this.Destinations[selectedOption - 1];
+            return ActualDestinationId;
         }
 
         void Save()
