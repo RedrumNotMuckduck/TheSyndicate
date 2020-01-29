@@ -41,14 +41,14 @@ namespace TheSyndicate
         {
             if (this.Options.Length > 0)
             {
-                Console.WriteLine("\n\n\n\nWhat will you do next?");
+                Console.WriteLine("\n\n\n\nWhat will you do next? Enter the number next to the option and press enter:\n");
             }
         }
         void RenderOptions()
         {
             for(int i = 0; i < this.Options.Length; i++) 
             {
-                Console.WriteLine($"{i + 1}: {this.Options[i]}");
+                Console.WriteLine($"{i + 1}: {this.Options[i]}\n");
             }
         }
 

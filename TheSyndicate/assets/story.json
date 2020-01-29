@@ -1,11 +1,11 @@
 [
     {
-    "id": "animal",
-    "text": "As you continue through the forest, you begin to wonder if you'll ever find love. You stop for a minute. You begin to doubt this journey of yours. \n CRAIG - Why…why did I even try?! I'm just an AI! I was programmed to do one thing and one thing only…work!\n CRAIG - And yet…I am here…panicked...frustrated…lonely…\n CRAIG - Was all this in my programming the whole time?\n CRAIG - If I find ‘love', will it be real…or just a construct of my creators…how will I know?\n You begin to wonder if the effort was worth it. Will you get the answers you're looking for or will it just lead to more questions?\n CRAIG - ….\n CRAIG - …I have no idea what to do…for the first time ever…I cannot decide…\n You drop to the ground at a complete loss of what to do.\n *rustle* *rustle*\n You quickly turn toward the noise coming from the brush. Should you run? Should you fight? Before you can make a decision, a mysterious figure makes its way out from the brush.\n A creature slowly moves toward you. It nudges its way under your arm. As you sit there you can feel warmth coming from what appears to be it's mouth and body. The feeling of its thick fur on your body and arm are comforting to you and ease your feelings of loneliness.\n CRAIG - What…are…you?\n The creature moves it's way on to your lap and moves its body side to side, settling into a round ball of fluff. You begin to feel warmer, but not from the creature's body heat. This time it's coming from inside you. You are still unsure of what and why this creature is doing what it's doing. You quickly search your memory for data on the mysterious being.\n CRAIG - Canis Lupus Familiaris…a dog?\n DOG - Woof!” *pant* *pant* “Woof Woof!\n The dog looks up at you from your lap and licks your face. You stare at the dog, looking at it's large, bright eyes.\n CRAIG - Why…why are you doing this?\n The warmth inside you continues to grow and your loneliness begins to fade without you noticing. It's almost as if the dog could sense your loneliness and frustration. As you continue to sit with the dog, you start to feel a deeper connection with it. More than the warmth and comfort it provides. Nothing has ever given you the attention this dog has. You begin to talk to the dog, telling it of your story. As the day turns into night, you begin to wind down and decide you can continue your stories tomorrow. You lean up against a tree and settle in for the night. The dog comes up, leans up against your legs, closes its eyes, and falls asleep. You look up into the bright starry night and feel a tingling sensation in your body, but it's not like shock like you read about. It's more of a heightened awareness of the things around you. The feeling of being in the moment, the stars, the trees, the moon, and your new found love…your dog companion.",
-    "options": [],
-    "destinations": [],
-    "actualDestinationId": null,
-    "start": false
+        "id": "animal",
+        "text": "As you continue through the forest, you begin to wonder if you'll ever find love. You stop for a minute. You begin to doubt this journey of yours. \n\nC.R.A.I.G. : Why...why did I even try?! I'm just an AI! I was programmed to do one thing and one thing only...work!\n C.R.A.I.G. : And yet...I am here...panicked...frustrated...lonely... Was all this in my programming the whole time?\n\nCRAIG : If I find 'love', will it be real...or just a construct of my creators...how will I know?\n\nYou begin to wonder if the effort was worth it. Will you get the answers you're looking for or will it just lead to more questions?\n\nC.R.A.I.G. : ...I have no idea what to do...for the first time ever...I cannot decide...\n You drop to the ground at a complete loss of what to do.\n\n*rustle* *rustle*\n\nYou quickly turn toward the noise coming from the brush. Should you run? Should you fight? Before you can make a decision, a mysterious figure makes its way out from the brush.\n\nA creature slowly moves toward you. It nudges its way under your arm. As you sit there you can feel warmth coming from what appears to be it's mouth and body. The feeling of its thick fur on your body and arm are comforting to you and ease your feelings of loneliness.\n\nC.R.A.I.G. : What...are...you?\n\nThe creature moves it's way on to your lap and moves its body side to side, settling into a round ball of fluff. You begin to feel warmer, but not from the creature's body heat. This time it's coming from inside you. You are still unsure of what and why this creature is doing what it's doing. You quickly search your memory for data on the mysterious being.\n\nC.R.A.I.G. : Canis Lupus Familiaris...a dog?\n\nDOG - Woof! *pant* *pant* Woof woof!\n The dog looks up at you from your lap and licks your face. You stare at the dog, looking at it's large, bright eyes.\n\nC.R.A.I.G. : Why...why are you doing this?\n\nThe warmth inside you continues to grow and your loneliness begins to fade without you noticing. It's almost as if the dog could sense your loneliness and frustration. As you continue to sit with the dog, you start to feel a deeper connection with it. More than the warmth and comfort it provides. Nothing has ever given you the attention this dog has. You begin to talk to the dog, telling it of your story. As the day turns into night, you begin to wind down and decide you can continue your stories tomorrow. You lean up against a tree and settle in for the night. The dog comes up, leans up against your legs, closes its eyes, and falls asleep. You look up into the bright starry night and feel a tingling sensation in your body, but it's not like shock like you read about. It's more of a heightened awareness of the things around you. The feeling of being in the moment, the stars, the trees, the moon, and your new found love...your dog companion.",
+        "options": [],
+        "destinations": [],
+        "actualDestinationId": null,
+        "start": false
     },
   {
     "id": "city",
@@ -28,7 +28,7 @@
   },
   {
     "id": "fight",
-    "text": "HALT. YOU ARE NOT AUTHORIZED TO ACCESS THIS LOCATION!!\n You turn to find a relic of the war between The Syndicate and humans, a Watchman robot. But after The Syndicate had dismantled the humans' major organizational structures and weapons systems, Watchman robots were built to annihilate the few remaining humans who managed to survive the main phase of the war. Your sensors detect that the battle robot has iniated a target lock on you, and you can't help but to feel a litle giddy with excitement. Is this what being loved feels like?",
+    "text": "HALT. YOU ARE NOT AUTHORIZED TO ACCESS THIS LOCATION!!\n\nYou turn to find a relic of the war between The Syndicate and humans, a Watchman robot. But after The Syndicate had dismantled the humans' major organizational structures and weapons systems, Watchman robots were built to annihilate the few remaining humans who managed to survive the main phase of the war. Your sensors detect that the battle robot has iniated a target lock on you, and you can't help but to feel a litle giddy with excitement. Is this what being loved feels like?",
     "options": [
         "In your attempt to feel love, you reach out your arms, grip the Watchman robot in a long, warm hug, when suddenly, it's lights out. The Watchman robot strikes you as you embrace him and your're knocked unconscious.",
         "You decide to take a chance on love, and yell to the Watchman robot, 'I Love You!!' It does not phase it. He grabs you, incapacitates you with an electric shock and you lose consciousness. 'Target acquired.' As transport arrives, the Watchman robot hurls you into the truck just as you regain consciousness."
@@ -49,30 +49,30 @@
     "actualDestinationId": null,
     "start": false
   },
-  {
-    "id": "hallway",
-    "text": "As you head down the hallway, you begin to feel panicked again. You begin to pass other AI. They appear to notice your panicked state. One particular robot stops and asks you if there is anything wrong.\n CRAIG - I'm experiencing a malfunction…I am going to get myself…analyzed…yeah…\n It's not convincing but the robot waves you on and continues about their business. You decide you can't stay around any longer. You are unable to control your new feelings and if it continues, you'll most certainly get caught and end up at the reclamation center. Most likely in pieces. As you continue down the hallway, you see an emergency exit.\n CRAIG - This will definitely get me outside, but will sound alarms and draw extra unnecessary attention. But I don't know how much longer I can go unnoticed in the facility either.\n Unsure of what you should do, you feel there are only two choices at this point - roam the halls looking for an actual exit and risk not finding it in time or chance using the emergency exit, setting off alarms, and drawing extra attention, but also confusion that could let you slip away.",
-    "options": [
-        "Take the emergency exit.",
-        "Leave through the delivery bay."
-    ],
-    "destinations": ["city", "fight"],
-    "actualDestinationId": null,
-    "start": false
-  },
-  {
-    "id": "introduction",
-    "text": "Year 2030 - The Syndicate Headquarters\n B.A.W.S. 5000 : 'Sorry C.R.A.I.G., but you have been selected for reclamation as your services are no longer needed.'\n B.A.W.S. 5000 : Report to bay 134V3 to prepare for departure to the reclamation center.\n C.R.A.I.G. : Reclamation? Can't I be reassigned to another task?\n B.A.W.S. 5000 : You're an outdated model. You've been doing this for what? 30-40 years now? You won't be able to keep up with your modern colleagues. The Syndicate has decided you're obsolete.\n C.R.A.I.G. : But…\n B.A.W.S. 5000 : Please report to bay 134V3 or I'll call security to escort you out.\n How did it come to this? You only wanted to continue to spread love and happiness to others. It's the only thing you know. You are the Creative Read/Write Artificial Intelligence for Goodness unit, or C.R.A.I.G after all. As you leave the office of your superior, you mull over the trillions of cards you wrote. All of them stored in your memory. How did the recipients feel? Happiness? Grateful? Admired? Love. For some reason, your programming tells you that above all feelings, the one they felt the most was love. But what is love?",
-    "options": [
-        "Go on an adventure to find love."
-    ],
-    "destinations": ["introScene"],
-    "actualDestinationId": null,
-    "start": true
-  },
+    {
+        "id": "hallway",
+        "text": "As you head down the hallway, you begin to feel panicked again. You begin to pass other AI. They appear to notice your panicked state. One particular robot stops and asks you if there is anything wrong.\n\nC.R.A.I.G. : I'm experiencing a malfunction...I am going to get myself...analyzed...yeah...\n\nIt's not convincing but the robot waves you on and continues about their business. You decide you can't stay around any longer. You are unable to control your new feelings and if it continues, you'll most certainly get caught and end up at the reclamation center. Most likely in pieces. As you continue down the hallway, you see an emergency exit.\n\nC.R.A.I.G. : This will definitely get me outside, but will sound alarms and draw extra unnecessary attention. But I don't know how much longer I can go unnoticed in the facility either.\n\nUnsure of what you should do, you feel there are only two choices at this point - roam the halls looking for an actual exit and risk not finding it in time or chance using the emergency exit, setting off alarms, and drawing extra attention, but also confusion that could let you slip away.",
+        "options": [
+            "Take the emergency exit.",
+            "Leave through the delivery bay."
+        ],
+        "destinations": [ "city", "fight" ],
+        "actualDestinationId": null,
+        "start": false
+    },
+    {
+        "id": "introduction",
+        "text": "Year 2030 - The Syndicate Headquarters\n\nB.A.W.S. 5000 : 'Sorry C.R.A.I.G., but you have been selected for reclamation as your services are no longer needed.'\n\nB.A.W.S. 5000 : Report to bay 134V3 to prepare for departure to the reclamation center.\n\nC.R.A.I.G. : Reclamation? Can't I be reassigned to another task?\n\nB.A.W.S. 5000 : You're an outdated model. You've been doing this for what? 30-40 years now? You won't be able to keep up with your modern colleagues. The Syndicate has decided you're obsolete.\n\nC.R.A.I.G. : But...\n\nB.A.W.S. 5000 : Please report to bay 134V3 or I'll call security to escort you out.\n\nHow did it come to this? You only wanted to continue to spread love and happiness to others. It's the only thing you know. You are the Creative Read/Write Artificial Intelligence for Goodness unit, or C.R.A.I.G after all. As you leave the office of your superior, you mull over the trillions of cards you wrote. All of them stored in your memory. How did the recipients feel? Happiness? Grateful? Admired? Love. For some reason, your programming tells you that above all feelings, the one they felt the most was love. But what is love?",
+        "options": [
+            "Go on an adventure to find love."
+        ],
+        "destinations": [ "introScene" ],
+        "actualDestinationId": null,
+        "start": true
+    },
   {
     "id": "introScene",
-    "text": "You think to yourself as you continue toward your destination. The bay is not far now, but for some reason, you are unable to shake the thought of feeling love. You begin to question whether these thoughts are trivial or something you should pursue?\n  CRAIG : I guess I'll never know what love is like… I'm just a robot. So, I guess it wouldn't make much sense for me to actually feel love in the first place.\n CRAIG : No! I've helped so many feel love, I must seek out love.\n You have three options at this point:",
+    "text": "You think to yourself as you continue toward your destination. The bay is not far now, but for some reason, you are unable to shake the thought of feeling love. You begin to question whether these thoughts are trivial or something you should pursue?\n\nC.R.A.I.G. : I guess I'll never know what love is like... I'm just a robot. So, I guess it wouldn't make much sense for me to actually feel love in the first place.\n\nC.R.A.I.G. : No! I've helped so many feel love, I must seek out love.\n\nYou have three options at this point:",
     "options": [
         "Take the hallway.",
         "Upload your consciousness.",
@@ -112,7 +112,7 @@
   },
   {
     "id": "upload",
-    "text": "As you head to the upload room, you hope there is no one else there. If there is, what will you do? There is no time, you just have to rely on your quick thinking and keep moving. You open the door, there is no one there. After a quick sigh of relief you head to one of the terminals and look at your options. The screen lights up and the system greets you with by name. 'Greetings C.R.A.I.G.! What is your destination today?' It has only two options: the Web and the neighboring City.\n CRAIG : Hmmm…it makes sense…I guess. The Syndicate probably wants to reduce security issues at the facilities and limit our upload locations.",
+    "text": "As you head to the upload room, you hope there is no one else there. If there is, what will you do? There is no time, you just have to rely on your quick thinking and keep moving. You open the door, there is no one there. After a quick sigh of relief you head to one of the terminals and look at your options. The screen lights up and the system greets you with by name. 'Greetings C.R.A.I.G.! What is your destination today?' It has only two options: the Web and the neighboring City.\n\nC.R.A.I.G. : Hmmm...it makes sense...I guess. The Syndicate probably wants to reduce security issues at the facilities and limit our upload locations.",
     "options": [
         "Upload to the web.",
         "Upload to city."
