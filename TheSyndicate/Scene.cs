@@ -27,7 +27,6 @@ namespace TheSyndicate
         public void Play()
         {
             RenderText();
-            RenderInstructions();
             RenderOptions();
             GetUserInput();
         }
@@ -37,19 +36,35 @@ namespace TheSyndicate
             Console.WriteLine(this.Text);
         }
         
-        void RenderInstructions()
-        {
-            if (this.Options.Length > 0)
-            {
-                Console.WriteLine("\n\n\n\nWhat will you do next? Enter the number next to the option and press enter:\n");
-            }
-        }
         void RenderOptions()
         {
-            for(int i = 0; i < this.Options.Length; i++) 
+            if (this.Options.Length > 0) 
+            {
+                RenderUserOptions();
+            }
+            else
+            {
+                RenderQuitMessage();
+            }
+        }
+
+        private void RenderUserOptions()
+        {
+            RenderInstructions();
+            for (int i = 0; i < this.Options.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {this.Options[i]}\n");
             }
+        }
+
+        private void RenderInstructions()
+        {
+            Console.WriteLine("\n\n\n\nWhat will you do next? Enter the number next to the option and press enter:\n");
+        }
+
+        private void RenderQuitMessage()
+        {
+            Console.WriteLine("\n\nYou have reached the end of your journey. Press CTRL + C to end.");
         }
 
         void GetUserInput()
@@ -84,16 +99,6 @@ namespace TheSyndicate
         public bool HasNextScenes()
         {
             return Destinations.Length > 0;
-        }
-
-        void Save()
-        {
-
-        }
-
-        void SetCurrent()
-        {
-
         }
     }
 }
