@@ -59,7 +59,7 @@ namespace TheSyndicate
 
         private void RenderInstructions()
         {
-            Console.WriteLine("\n\n\n\nWhat will you do next? Enter the number next to the option and press enter:\n");
+            Console.WriteLine("\n\nWhat will you do next? Enter the number next to the option and press enter:\n");
         }
 
         private void RenderQuitMessage()
