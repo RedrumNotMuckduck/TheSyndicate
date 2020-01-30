@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TheSyndicate
 {
@@ -12,7 +10,6 @@ namespace TheSyndicate
         public string[] Destinations { get; private set; }
         public string ActualDestinationId { get; private set; }
         public bool Start { get; private set; }
-
 
         public Scene(string id, string text, string[] options, string[] destinations, bool start)
         {
@@ -30,6 +27,7 @@ namespace TheSyndicate
             RenderOptions();
             GetUserInput();
         }
+
         void RenderText()
         {
             ClearConsole();
