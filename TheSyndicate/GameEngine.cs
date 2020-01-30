@@ -18,6 +18,7 @@ namespace TheSyndicate
 
         public void Start()
         {
+            ConsoleWindow.ShowWindow(ConsoleWindow.ThisConsole, ConsoleWindow.MAXIMIZE);
             while (CurrentScene.HasNextScenes())
             {
                 PlayScene();
