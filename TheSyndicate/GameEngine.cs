@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using System;
 
 namespace TheSyndicate
 {
@@ -19,6 +20,7 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.ShowWindow(ConsoleWindow.ThisConsole, ConsoleWindow.MAXIMIZE);
+            Console.ForegroundColor = ConsoleColor.Green;
             while (CurrentScene.HasNextScenes())
             {
                 PlayScene();
