@@ -1,4 +1,5 @@
 ﻿using System;
+using TheSyndicate.Actions;
 
 namespace TheSyndicate
 {
@@ -10,6 +11,7 @@ namespace TheSyndicate
         public string[] Destinations { get; private set; }
         public string ActualDestinationId { get; private set; }
         public bool Start { get; private set; }
+        public IAction Action { get; set; }
 
         public Scene(string id, string text, string[] options, string[] destinations, bool start)
         {
@@ -92,6 +94,29 @@ namespace TheSyndicate
         void SetDestinationId(int selectedOption)
         {
             this.ActualDestinationId = this.Destinations[selectedOption - 1];
+            if (this.ActualDestinationId.Equals("fight"))
+            {
+                this.Action = new FightAction();
+                Action.ExecuteAction();
+                if (Action.DidPlayerSucceed())
+                {
+                    this.ActualDestinationId = "recyclerTruck";
+                }
+                else
+                {
+                    this.ActualDestinationId = "dead";
+                }
+            }
+            else if (this.Id.Equals("upload") || 
+                (this.Id.Equals("recyclerTruck") && this.ActualDestinationId.Equals("city")))
+            {
+                this.Action = new KeyPressAction();
+                Action.ExecuteAction();
+                if (!Action.DidPlayerSucceed())
+                {
+                    this.ActualDestinationId = "dead";
+                }
+            }
         }
         
         public bool HasNextScenes()

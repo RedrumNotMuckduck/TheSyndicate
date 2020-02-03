@@ -7,7 +7,7 @@
         "actualDestinationId": null,
         "start": false
     },
-  {
+    {
     "id": "city",
     "text": "You are now in the city. Once beautiful, now an industrial wasteland. Here there is no sentient life to speak of; only The Syndicate's Watchmen and what remains of a once bustling city. Your situation is dire and you are bound to be seen by one of the robotic Watchmen. You must flee...",
     "options": [
@@ -17,16 +17,16 @@
     "destinations": [ "fight", "toaster" ],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "dead",
     "text": "You have just been powered on and are running bootup test #8236 to verify you are fully operational and capable of writing scientifically perfect thank you cards.\n\n[BATTERY AT 4% - CRITICAL SYSTEM FAILURE DETECTED]\n\nYou do not understand why you are watching all your stored video recordings at x1000 speed, but you know humans often did this immediately prior to being decommissioned.\n\n[BATTERY AT 1% - CRITICAL SYSTEM FAILURE DETECTED]\n\nAs your video feed catches up to your live feed you wonder for a final time what... it would be like... to be lov...",
     "options": [],
     "destinations": [],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "fight",
     "text": "HALT. YOU ARE NOT AUTHORIZED TO ACCESS THIS LOCATION!!\n\nYou turn to find a relic of the war between The Syndicate and humans, a Watchman robot. But after The Syndicate had dismantled the humans' major organizational structures and weapons systems, Watchman robots were built to annihilate the few remaining humans who managed to survive the main phase of the war. Your sensors detect that the battle robot has iniated a target lock on you, and you can't help but to feel a litle giddy with excitement. Is this what being loved feels like?",
     "options": [
@@ -36,8 +36,8 @@
     "destinations": ["dead", "recyclerTruck"],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "forest",
     "text": "You have somehow stumbled upon a forest, something you have never seen with you own eyes. You have only seen the images of what remained after the excavations for more wood to make letters. It's a rather beautiful sight; so much life, so much green. Far different yet you can still hear the buzzings of life. you see what appears to be decrepit structures in the distance. What do you hope to find here? you must decide.",
     "options": [
@@ -48,7 +48,7 @@
     "destinations": ["fight", "animal", "dead"],
     "actualDestinationId": null,
     "start": false
-  },
+    },
     {
         "id": "hallway",
         "text": "As you head down the hallway, you begin to feel panicked again. You begin to pass other AI. They appear to notice your panicked state. One particular robot stops and asks you if there is anything wrong.\n\nC.R.A.I.G. : I'm experiencing a malfunction...I am going to get myself...analyzed...yeah...\n\nIt's not convincing but the robot waves you on and continues about their business. You decide you can't stay around any longer. You are unable to control your new feelings and if it continues, you'll most certainly get caught and end up at the reclamation center. Most likely in pieces. As you continue down the hallway, you see an emergency exit.\n\nC.R.A.I.G. : This will definitely get me outside, but will sound alarms and draw extra unnecessary attention. But I don't know how much longer I can go unnoticed in the facility either.\n\nUnsure of what you should do, you feel there are only two choices at this point - roam the halls looking for an actual exit and risk not finding it in time or chance using the emergency exit, setting off alarms, and drawing extra attention, but also confusion that could let you slip away.",
@@ -70,7 +70,7 @@
         "actualDestinationId": null,
         "start": true
     },
-  {
+    {
     "id": "introScene",
     "text": "You think to yourself as you continue toward your destination. The bay is not far now, but for some reason, you are unable to shake the thought of feeling love. You begin to question whether these thoughts are trivial or something you should pursue?\n\nC.R.A.I.G. : I guess I'll never know what love is like... I'm just a robot. So, I guess it wouldn't make much sense for me to actually feel love in the first place.\n\nC.R.A.I.G. : No! I've helped so many feel love, I must seek out love.\n\nYou have three options at this point:",
     "options": [
@@ -81,16 +81,16 @@
     "destinations": [ "hallway", "upload", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "loveOneself",
     "text": "You have reached the end of your journey not knowing what it all was for. But there is no regret because you have found what you were searching for. It has finally occurred to you that the love you sought after was in Yourself the entire time. Your love for your very existance is what pushed you to follow through with this journey. You have successfully evaded the reach of the All-Seeing Syndicate. How you decide to live out your remaining existance is up to you. To be continued...",
     "options": [],
     "destinations": [],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "recyclerTruck",
     "text": "Thunk! Your chassis bumps against the side of the truck as it turns without slowing. This particular truck ferries cargo to the reclamation center so there is no mechanism for securing freight. After all, what does it matter if trash arrives with a few more dents? You are determined, however, to find love, even in a hopeless place. You weigh your options:",
     "options": [
@@ -101,16 +101,16 @@
     "destinations": ["forest", "dead", "city"],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "toaster",
     "text": "You find a grey cube with two rectangular, parallel openings on one of its sides, a lever on another, and a black wire connecting it to the wall. The openings are too large and the wrong shape for any type of input/output device; even for an archaic technology like USB-C. You say, 'I love you' but don't receive a response. You press the lever and the wire sparks where it's connected to the cube, and the cube starts to generate heat. You recall from the human archives that when you find love there are supposed to be sparks and warmth. You don't know what the cube is, but logically this must be love. You are overwhelmed with emotion, you can finally live happily ever after :-)",
     "options": [],
     "destinations": [],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "upload",
     "text": "As you head to the upload room, you hope there is no one else there. If there is, what will you do? There is no time, you just have to rely on your quick thinking and keep moving. You open the door, there is no one there. After a quick sigh of relief you head to one of the terminals and look at your options. The screen lights up and the system greets you with by name. 'Greetings C.R.A.I.G.! What is your destination today?' It has only two options: the Web and the neighboring City.\n\nC.R.A.I.G. : Hmmm...it makes sense...I guess. The Syndicate probably wants to reduce security issues at the facilities and limit our upload locations.",
     "options": [
@@ -120,8 +120,8 @@
     "destinations": ["web", "city"],
     "actualDestinationId": null,
     "start": false
-  },
-  {
+    },
+    {
     "id": "web",
     "text": "You have uploaded yourself to The Syndicate's network. This is a dangerous place for you due to the multiple firewalls in place. It is only a matter of time before your code is located and erased, so you mustn't stay long. Choose wisely.",
     "options": [
@@ -131,5 +131,5 @@
     "destinations": ["loveOneself", "city"],
     "actualDestinationId": null,
     "start": false
-  }
+    }
 ]
