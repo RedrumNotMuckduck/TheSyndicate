@@ -1,4 +1,6 @@
-﻿namespace TheSyndicate
+﻿using TheSyndicate.Actions;
+
+namespace TheSyndicate
 {
     class Program
     {
