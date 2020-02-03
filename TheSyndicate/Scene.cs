@@ -40,8 +40,8 @@ namespace TheSyndicate
             if (this.Options.Length > 0) 
             {
                 RenderUserOptions();
-            }
-            else
+            }     
+            else 
             {
                 player.EmptySaveStateJSONfile();
                 RenderQuitMessage();

@@ -73,12 +73,12 @@ namespace TheSyndicate
         private Scene GetFirstScene()
         {
             Scene firstScene = null;
-
-            if (!ConvertSaveIDFromJSON().Equals(""))
+            string savedSceneId = ConvertSaveIDFromJSON();
+            if (!savedSceneId.Equals("0"))
             {
                 foreach (KeyValuePair<string, Scene> scene in this.Scenes)
                 {
-                    if (string.Compare(scene.Key, ConvertSaveIDFromJSON()) > 0)
+                    if (scene.Key.Equals(savedSceneId))
                     {
                         firstScene = scene.Value;
                     }

@@ -17,7 +17,7 @@ namespace TheSyndicate
             string infoSavedAsJSON = JsonConvert.SerializeObject(infoToSave);
             //Console.WriteLine(infoToSave);
             //Console.WriteLine(infoSavedAsJSON);
-            File.WriteAllText(@"..\..\..\assets\SaveState.json", infoSavedAsJSON);
+            File.WriteAllText(@"..\..\..\assets\SaveState.json", infoToSave);
 
 
         }
