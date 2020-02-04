@@ -16,15 +16,15 @@ namespace TheSyndicate
 
         int TEXT_BOX_X_DEFAULT = 2;
         int TEXT_BOX_Y_DEFAULT = 2;
-
+        
         Regex NEW_LINE_PATTERN = new Regex($"\n");
 
-        private int Width { get; set; }
-        private int Height { get; set; }
-        private int TextBufferX { get; set; }
-        private int TextBufferY { get; set; }
-        private int TextBoxX { get; set; }
-        private int TextBoxY { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int TextBufferX { get; set; }
+        public int TextBufferY { get; set; }
+        public int TextBoxX { get; set; }
+        public int TextBoxY { get; set; }
         public int NewLines { get; set; }
 
         public TextBox(string text = "", int width = 100, int height = 20)
@@ -33,7 +33,7 @@ namespace TheSyndicate
             this.Height = height;
             this.TextBufferX = 2;
             this.TextBufferY = 2;
-            this.TextBoxX = TEXT_BOX_X_DEFAULT;
+            this.TextBoxX = (Console.WindowWidth - this.Width)/2;
             this.TextBoxY = TEXT_BOX_Y_DEFAULT;
         }
 
@@ -45,8 +45,9 @@ namespace TheSyndicate
         public void DrawDialogBox(string text)
         {
             StringBuilder box = new StringBuilder();
+            // gets the number of \n in scene text to resize text box size to account for new lines in scene texts
             MatchCollection matches = NEW_LINE_PATTERN.Matches(text);
-            this.Height += matches.Count;
+            this.Height += matches.Count/2;
 
             DrawBoxTop(box);
             DrawBoxSides(box);
@@ -57,7 +58,7 @@ namespace TheSyndicate
         {
             box.Clear();
             box.Append(TOP_LEFT_CORNER);
-            //this.Width - 2 for corner characters
+            // this.Width - 2 for corner characters
             box.Append(HORIZONTAL_LINE, this.Width - 2);
             box.Append(TOP_RIGHT_CORNER);
             SetBoxPosition(TextBoxX, TextBoxY);
@@ -97,7 +98,7 @@ namespace TheSyndicate
         public void FormatText(string text)
         {
             StringBuilder boxText = new StringBuilder();
-            int lineWidth = this.Width - (TextBoxX + TextBufferX);
+            int lineWidth = this.Width - (TextBufferX * 2);
             int textLength = text.Length;
             int newLineIndex;
             int startIndex = 0;
@@ -107,9 +108,14 @@ namespace TheSyndicate
 
             while (startIndex < textLength)
             {
-                string dashChar;
+                //TODO: Use this for line
+                //string dashChar;
 
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
+
+                //TODO: Need to work on getting \n to render properly, currently using SetBoxPosition to handle new lines.
+                //TODO: Lines 118-129 need work to handle when \n is at 0 index. Probably due to \n reading as 1 character and not two.
+
                 //if (newLineIndex < endIndex && newLineIndex == 0 && (startIndex + newLineIndex + 2) < textLength)
                 //{
                 //    boxText.Append(' ', TextBoxX + TextBufferX);
@@ -122,6 +128,8 @@ namespace TheSyndicate
                 //    boxText.Clear();
                 //}
                 //else
+
+                //checks if \n appears before maximum lineWidth, if so, then renders up to \n and continues to next line
                 if (newLineIndex < endIndex && newLineIndex != 0)
                 {
                     boxText.Append(text, startIndex, newLineIndex - startIndex);
