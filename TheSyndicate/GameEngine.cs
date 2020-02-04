@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using System;
+
 
 namespace TheSyndicate
 {
     class GameEngine
     {
+        Player player = Player.Instance();
         private string PATH_TO_STORY = @"..\..\..\assets\story.json";
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
+
 
         public GameEngine()
         {
@@ -54,6 +57,12 @@ namespace TheSyndicate
             return JsonConvert.DeserializeObject<List<Scene>>(story);
         }
 
+        private string ConvertSaveIDFromJSON()
+        {
+            string savedID = File.ReadAllText(@"..\..\..\assets\SaveState.json");
+            return savedID;
+        }
+
         private string GetStoryFromFile()
         {
             return File.ReadAllText(PATH_TO_STORY);
@@ -67,12 +76,28 @@ namespace TheSyndicate
         private Scene GetFirstScene()
         {
             Scene firstScene = null;
-            foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+            string savedSceneId = ConvertSaveIDFromJSON();
+            if (!savedSceneId.Equals("0"))
             {
-                if (scene.Value.Start == true)
-                firstScene = scene.Value;
+                foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+                {
+                    if (scene.Key.Equals(savedSceneId))
+                    {
+                        firstScene = scene.Value;
+                    }
+                }
+                return firstScene;
+
             }
-            return firstScene;
+            else
+            {
+                foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+                {
+                    if (scene.Value.Start == true)
+                        firstScene = scene.Value;
+                }
+                return firstScene;
+            }
         }
 
         private void PlayScene()

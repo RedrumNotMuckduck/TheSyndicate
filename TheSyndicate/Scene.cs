@@ -7,7 +7,7 @@ namespace TheSyndicate
 {
     public class Scene
     {
-        //Regex NEW_LINE_PATTERN = new Regex(@"\n");
+        Player player = Player.Instance();
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
@@ -61,6 +61,7 @@ namespace TheSyndicate
             else
             {
                 RenderQuitMessage(sceneTextBox, optionsBoxX, optionsBoxY);
+                player.EmptySaveStateJSONfile();
             }
         }
 
@@ -77,6 +78,8 @@ namespace TheSyndicate
                 Console.WriteLine($"{i + 1}: {this.Options[i]}");
                 optionsBoxY += 2;
             }
+            sceneTextBox.SetBoxPosition(optionsBoxX, Console.WindowHeight - 2);
+            Console.WriteLine($"Press 0 at any point to save");
         }
 
         private void RenderInstructions(TextBox sceneTextBox, int optionsX, int optionsY)
@@ -105,15 +108,28 @@ namespace TheSyndicate
                 Int32.TryParse(Console.ReadLine(), out selectedOption);
             }
             while (!IsValidInput(selectedOption));
+
             //resets text color to green
             Console.ForegroundColor = ConsoleColor.Green;
-            SetDestinationId(selectedOption);
+
+            if (selectedOption == 0) 
+            {
+                //func 
+                player.SaveIDFunc(this.Id);
+                Console.WriteLine("Saved!");
+                Console.WriteLine("Continue when you are ready!!!!");
+                GetUserInput();
+            } 
+            else 
+            {
+                SetDestinationId(selectedOption);
+            }           
         }
 
         bool IsValidInput(int selectedOption)
         {
             int numberOfOptions = this.Options.Length;
-            return selectedOption > 0 && selectedOption <= numberOfOptions;
+            return selectedOption >= 0 && selectedOption <= numberOfOptions;
         }
 
         void ClearConsole()
