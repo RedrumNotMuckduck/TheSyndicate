@@ -7,6 +7,7 @@ namespace TheSyndicate
 {
     public class Scene
     {
+        Player player = Player.Instance();
         Regex NEW_LINE_PATTERN = new Regex(@"\n");
         public string Id { get; private set; }
         public string Text { get; private set; }
@@ -47,10 +48,11 @@ namespace TheSyndicate
             if (this.Options.Length > 0) 
             {
                 RenderUserOptions(sceneTextBox);
-            }
-            else
+            }     
+            else 
             {
-                RenderQuitMessage(sceneTextBox);
+                player.EmptySaveStateJSONfile();
+                RenderQuitMessage(sceneTextBox);          
             }
         }
 
@@ -62,6 +64,7 @@ namespace TheSyndicate
                 sceneTextBox.SetBoxPosition( 4 , ((Console.WindowHeight * 3 / 4) + 2 + i));
                 Console.WriteLine($"{i + 1}: {this.Options[i]}\n");
             }
+            Console.WriteLine($"Press 0 at any point to save");
         }
 
         private void RenderInstructions(TextBox sceneTextBox)
@@ -86,13 +89,27 @@ namespace TheSyndicate
             }
             while (!IsValidInput(selectedOption));
 
-            SetDestinationId(selectedOption);
+            if (selectedOption == 0) 
+            {
+                //func 
+                player.SaveIDFunc(this.Id);
+                Console.WriteLine("Saved!");
+                Console.WriteLine("Continue when you are ready!!!!");
+                GetUserInput();
+                
+
+            } 
+            else 
+            {
+                SetDestinationId(selectedOption);
+            }
+           
         }
 
         bool IsValidInput(int selectedOption)
         {
             int numberOfOptions = this.Options.Length;
-            return selectedOption > 0 && selectedOption <= numberOfOptions;
+            return selectedOption >= 0 && selectedOption <= numberOfOptions;
         }
 
         void ClearConsole()
