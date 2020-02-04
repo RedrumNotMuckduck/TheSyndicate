@@ -108,7 +108,8 @@ namespace TheSyndicate
 
             while (startIndex < textLength)
             {
-                string dashChar;
+                //TODO: Use this for line
+                //string dashChar;
 
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
 

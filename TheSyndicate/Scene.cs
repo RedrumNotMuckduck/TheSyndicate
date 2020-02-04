@@ -91,6 +91,7 @@ namespace TheSyndicate
             optionsY += 4;
             sceneTextBox.SetBoxPosition(optionsX, optionsY);
             Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end.");
+            Console.ForegroundColor = ConsoleColor.Green;
         }
 
         void GetUserInput()
