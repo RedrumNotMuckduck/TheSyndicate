@@ -7,7 +7,8 @@ namespace TheSyndicate
 {
     public class Scene
     {
-        Player player = Player.Instance();
+        public static int SAVE_OPTION = 0;
+        Player player = Player.GetInstance();
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
@@ -30,7 +31,7 @@ namespace TheSyndicate
         {
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);
-            GetUserInput();
+            ExecutePlayerOption();
         }
 
         TextBox RenderText()
@@ -61,7 +62,6 @@ namespace TheSyndicate
             else
             {
                 RenderQuitMessage(sceneTextBox, optionsBoxX, optionsBoxY);
-                player.EmptySaveStateJSONfile();
             }
         }
 
@@ -97,39 +97,44 @@ namespace TheSyndicate
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
-        void GetUserInput()
+        private void ExecutePlayerOption()
         {
-            int selectedOption;
+            int userInput = GetValidUserInput();
+            if (userInput == SAVE_OPTION)
+            {
+                player.SavePlayerData(this.Id);
+                Console.WriteLine("Saved!\nContinue when you are ready!!!!");
+                Console.ReadLine();
+                ExecutePlayerOption();
+            }
+            else
+            {
+                SetDestinationId(userInput);
+            }
+
+        }
+
+        private int GetValidUserInput()
+        {
+            int userInput;
 
             do
             {
                 //hides input text
                 Console.ForegroundColor = ConsoleColor.Black;
-                Int32.TryParse(Console.ReadLine(), out selectedOption);
+                Int32.TryParse(Console.ReadLine(), out userInput);
             }
-            while (!IsValidInput(selectedOption));
+            while (!IsValidInput(userInput));
 
             //resets text color to green
             Console.ForegroundColor = ConsoleColor.Green;
-
-            if (selectedOption == 0) 
-            {
-                //func 
-                player.SaveIDFunc(this.Id);
-                Console.WriteLine("Saved!");
-                Console.WriteLine("Continue when you are ready!!!!");
-                GetUserInput();
-            } 
-            else 
-            {
-                SetDestinationId(selectedOption);
-            }           
+            return userInput;
         }
 
-        bool IsValidInput(int selectedOption)
+        bool IsValidInput(int userInput)
         {
             int numberOfOptions = this.Options.Length;
-            return selectedOption >= 0 && selectedOption <= numberOfOptions;
+            return userInput >= 0 && userInput <= numberOfOptions;
         }
 
         void ClearConsole()
