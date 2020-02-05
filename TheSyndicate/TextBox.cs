@@ -92,21 +92,21 @@ namespace TheSyndicate
             box.Append(BOTTOM_RIGHT_CORNER);
             SetBoxPosition(TextBoxX, TextBoxY);
             Console.WriteLine(box);
-            TextBoxY = TEXT_BOX_Y_DEFAULT;
+            //TextBoxY = TEXT_BOX_Y_DEFAULT;
         }
 
         public void FormatText(string text)
         {
             StringBuilder boxText = new StringBuilder();
+            //TextBufferX * 2 for buffer on both sides
             int lineWidth = this.Width - (TextBufferX * 2);
-            int textLength = text.Length;
             int newLineIndex;
             int startIndex = 0;
             int endIndex = lineWidth;
             int textStartX = TextBufferX + TextBoxX;
-            int textStartY = TextBufferY + TextBoxY;
+            int textStartY = TextBufferY + TEXT_BOX_Y_DEFAULT;
 
-            while (startIndex < textLength)
+            while (startIndex < text.Length)
             {
                 //TODO: Use this for line
                 //string dashChar;
@@ -114,7 +114,7 @@ namespace TheSyndicate
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
 
                 //TODO: Need to work on getting \n to render properly, currently using SetBoxPosition to handle new lines.
-                //TODO: Lines 118-129 need work to handle when \n is at 0 index. Probably due to \n reading as 1 character and not two.
+                //TODO: Lines 118-129 need work to handle when \n is at 0 index. Probably due to \n reading as 1 character and not two. Might need $();
 
                 //if (newLineIndex < endIndex && newLineIndex == 0 && (startIndex + newLineIndex + 2) < textLength)
                 //{
@@ -136,7 +136,7 @@ namespace TheSyndicate
                     SetBoxPosition(textStartX, textStartY);
                     Console.Write(boxText);
                     startIndex = newLineIndex + 2;
-                    endIndex = startIndex + lineWidth > textLength ? textLength : startIndex + lineWidth;
+                    endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
                     textStartY++;
                     boxText.Clear();
                 }
@@ -146,7 +146,7 @@ namespace TheSyndicate
                     SetBoxPosition(textStartX, textStartY);
                     Console.Write(boxText);
                     startIndex = endIndex;
-                    endIndex = startIndex + lineWidth > textLength ? textLength : startIndex + lineWidth;
+                    endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
                     textStartY++;
                     boxText.Clear();
                 }

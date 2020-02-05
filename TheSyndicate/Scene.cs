@@ -30,7 +30,7 @@ namespace TheSyndicate
         {
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);
-            GetUserInput();
+            GetUserInput(sceneTextBox);
         }
 
         TextBox RenderText()
@@ -50,62 +50,63 @@ namespace TheSyndicate
         
         void RenderOptions(TextBox sceneTextBox)
         {
-            int optionsBoxX = sceneTextBox.TextBoxX;
-            int optionsBoxY = sceneTextBox.Height + sceneTextBox.TextBoxY + sceneTextBox.TextBufferY;
-
             //checks for end scene
             if (this.Options.Length > 0) 
             {
-                RenderUserOptions(sceneTextBox, optionsBoxX, optionsBoxY);
+                RenderUserOptions(sceneTextBox);
             }
             else
             {
-                RenderQuitMessage(sceneTextBox, optionsBoxX, optionsBoxY);
+                RenderQuitMessage(sceneTextBox);
                 player.EmptySaveStateJSONfile();
             }
         }
 
-        private void RenderUserOptions(TextBox sceneTextBox, int optionsBoxX, int optionsBoxY)
+        private void RenderUserOptions(TextBox sceneTextBox)
         {
-            sceneTextBox.SetBoxPosition(optionsBoxX, optionsBoxY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
 
-            RenderInstructions(sceneTextBox, optionsBoxX, optionsBoxY);
-            optionsBoxY += 6;
+            RenderInstructions(sceneTextBox);
 
             for (int i = 0; i < this.Options.Length; i++)
             {
-                sceneTextBox.SetBoxPosition(optionsBoxX, optionsBoxY);
+                sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
+
                 Console.WriteLine($"{i + 1}: {this.Options[i]}");
-                optionsBoxY += 2;
+                sceneTextBox.TextBoxY += 2;
             }
-            sceneTextBox.SetBoxPosition(optionsBoxX, Console.WindowHeight - 2);
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, Console.WindowHeight - 2);
             Console.WriteLine($"Press 0 at any point to save");
         }
 
-        private void RenderInstructions(TextBox sceneTextBox, int optionsX, int optionsY)
+        private void RenderInstructions(TextBox sceneTextBox)
         {
-            optionsY += 4;
-            sceneTextBox.SetBoxPosition(optionsX, optionsY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
+
             Console.WriteLine("What will you do next? Enter the number next to the option and press enter:");
         }
 
-        private void RenderQuitMessage(TextBox sceneTextBox, int optionsX, int optionsY)
+        private void RenderQuitMessage(TextBox sceneTextBox)
         {
-            optionsY += 4;
-            sceneTextBox.SetBoxPosition(optionsX, optionsY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
             Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end.");
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
-        void GetUserInput()
+        void GetUserInput(TextBox sceneTextBox)
         {
             int selectedOption;
 
             do
             {
                 //hides input text
-                Console.ForegroundColor = ConsoleColor.Black;
+                //Console.ForegroundColor = ConsoleColor.Black;
+                //Console.SetCursorPosition();
                 Int32.TryParse(Console.ReadLine(), out selectedOption);
+                Console.WriteLine(selectedOption);
             }
             while (!IsValidInput(selectedOption));
 
@@ -118,7 +119,7 @@ namespace TheSyndicate
                 player.SaveIDFunc(this.Id);
                 Console.WriteLine("Saved!");
                 Console.WriteLine("Continue when you are ready!!!!");
-                GetUserInput();
+                //GetUserInput();
             } 
             else 
             {
