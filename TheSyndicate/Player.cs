@@ -1,42 +1,85 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace TheSyndicate
 {
     public class Player
     {
         private static Player _instance;
-        public void SaveIDFunc(string id)
+        private const int MAXIMUM_BATTERY_POWER = 4;
+        private static string PATH_TO_SAVE_STATE = @"..\..\..\assets\SaveState.json";
+        public string CurrentSceneId { get; private set; }
+        private int BatteryPower { get; set; }
+
+        [JsonConstructor]
+        private Player(string currentSceneId, int batteryPower = MAXIMUM_BATTERY_POWER)
         {
-
-            //write to json saveState
-            string infoToSave = id;
-            string infoSavedAsJSON = JsonConvert.SerializeObject(infoToSave);
-            //Console.WriteLine(infoToSave);
-            //Console.WriteLine(infoSavedAsJSON);
-            File.WriteAllText(@"..\..\..\assets\SaveState.json", infoToSave);
-
-
+            this.CurrentSceneId = currentSceneId;
+            this.BatteryPower = batteryPower;
         }
 
-        public void EmptySaveStateJSONfile()
-        {
-            var infoToDelete = 0;
-            string infoSavedAsJSON = JsonConvert.SerializeObject(infoToDelete);
-            File.WriteAllText(@"..\..\..\assets\SaveState.json", infoSavedAsJSON);
-        }
-
-        public static Player Instance()
+        public static Player GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new Player();
+                _instance = GetPlayerFromSaveState();
             }
-
             return _instance;
+        }
+
+        private static Player GetPlayerFromSaveState()
+        {
+            return ConvertSaveStateToPlayer();
+        }
+
+        private static Player ConvertSaveStateToPlayer()
+        {
+            string savedPlayerDataAsJson = GetSaveState();
+            return JsonConvert.DeserializeObject<Player>(savedPlayerDataAsJson);
+        }
+
+        public static string GetSaveState()
+        {
+            return File.ReadAllText(PATH_TO_SAVE_STATE);
+        }
+
+        public void SavePlayerData(string currentSceneId)
+        {
+            CurrentSceneId = currentSceneId;
+            WritePlayerToFile();
+        }
+
+        public void ResetPlayerData(string firstSceneId)
+        {
+            CurrentSceneId = firstSceneId;
+            SetBatteryToFullPower();
+            WritePlayerToFile();
+        }
+
+        private void WritePlayerToFile()
+        {
+            string playerDataAsJson = ConvertPlayerToJson();
+            File.WriteAllText(PATH_TO_SAVE_STATE, playerDataAsJson);
+        }
+
+        private string ConvertPlayerToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public void SetBatteryToFullPower()
+        {
+            this.BatteryPower = MAXIMUM_BATTERY_POWER;
+        }
+
+        public void IncrementBatteryPowerByOne()
+        {
+            this.BatteryPower++;
+        }
+
+        public void DecrementBatteryPowerByOne()
+        {
+            this.BatteryPower--;
         }
     }
 }
