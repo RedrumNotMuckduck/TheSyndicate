@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
 using TheSyndicate.Actions;
 
 namespace TheSyndicate
@@ -39,7 +37,7 @@ namespace TheSyndicate
 
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
 
-            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4);
+            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2) ;
             dialogBox.FormatText(this.Text);
             dialogBox.DrawDialogBox(this.Text);
 
@@ -76,7 +74,7 @@ namespace TheSyndicate
                 Console.WriteLine($"{i + 1}: {this.Options[i]}");
                 sceneTextBox.TextBoxY += 2;
             }
-            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, Console.WindowHeight - 2);
+            sceneTextBox.SetBoxPosition(Console.WindowWidth - (Console.WindowWidth / 4), Console.WindowHeight - 2);
             Console.WriteLine($"Press 0 at any point to save");
         }
 
@@ -102,16 +100,10 @@ namespace TheSyndicate
 
             do
             {
-                //hides input text
-                //Console.ForegroundColor = ConsoleColor.Black;
-                //Console.SetCursorPosition();
+                sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
                 Int32.TryParse(Console.ReadLine(), out selectedOption);
-                Console.WriteLine(selectedOption);
             }
             while (!IsValidInput(selectedOption));
-
-            //resets text color to green
-            Console.ForegroundColor = ConsoleColor.Green;
 
             if (selectedOption == 0) 
             {

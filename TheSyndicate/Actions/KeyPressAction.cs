@@ -24,21 +24,20 @@ namespace TheSyndicate.Actions
 
         public void ExecuteAction()
         {
+            Console.CursorVisible = false;
             RenderInstructions();
             WaitForPlayerToPressEnter();
             HaveUserAlternatePressingSpacebarAndTab();
             RenderEndMessage();
+            Console.CursorVisible = true;
         }
         
         private void RenderInstructions()
         {
-            TextBox instructions = new TextBox(INSTRUCTIONS, Console.WindowWidth/2);
-            instructions.TextBoxX = Console.WindowWidth / 4;
-            instructions.TextBoxY = Console.WindowHeight / 2;
+            TextBox instructions = new TextBox(INSTRUCTIONS, Console.WindowWidth/2, 2, Console.WindowWidth / 4, Console.WindowHeight / 2);
             Console.Clear();
             instructions.SetBoxPosition(instructions.TextBoxX, instructions.TextBoxY);
             instructions.FormatText(INSTRUCTIONS);
-            //Console.WriteLine(INSTRUCTIONS);
         }
 
         private void WaitForPlayerToPressEnter()

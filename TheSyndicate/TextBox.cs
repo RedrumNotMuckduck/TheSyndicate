@@ -13,9 +13,6 @@ namespace TheSyndicate
         char BOTTOM_RIGHT_CORNER = '\u255D';
         char HORIZONTAL_LINE = '\u2550';
         char VERTICAL_LINE = '\u2551';
-
-        int TEXT_BOX_X_DEFAULT = 2;
-        int TEXT_BOX_Y_DEFAULT = 2;
         
         Regex NEW_LINE_PATTERN = new Regex($"\n");
 
@@ -26,17 +23,16 @@ namespace TheSyndicate
         public int TextBufferY { get; set; }
         public int TextBoxX { get; set; }
         public int TextBoxY { get; set; }
-        public int NewLines { get; set; }
 
-        public TextBox(string text = "", int width = 100, int height = 2)
+        public TextBox(string text = "", int width = 100, int height = 2, int borderX = 2, int borderY = 2)
         {
             this.Text = text;
             this.Width = width;
             this.Height = height;
             this.TextBufferX = 2;
             this.TextBufferY = 2;
-            this.TextBoxX = (Console.WindowWidth - this.Width)/2;
-            this.TextBoxY = TEXT_BOX_Y_DEFAULT;
+            this.TextBoxX = borderX; // (Console.WindowWidth - this.Width)/2;
+            this.TextBoxY = borderY;
         }
 
         public void SetBoxPosition(int xCoord = 0, int yCoord = 0)
@@ -47,11 +43,6 @@ namespace TheSyndicate
         public void DrawDialogBox(string text)
         {
             StringBuilder box = new StringBuilder();
-            // gets the number of \n in scene text to resize text box size to account for new lines in scene texts
-            //MatchCollection matches = NEW_LINE_PATTERN.Matches(text);
-            //this.Height += matches.Count;
-            
-
             DrawBoxTop(box);
             DrawBoxSides(box);
             DrawBoxBottom(box);
@@ -79,10 +70,6 @@ namespace TheSyndicate
                 SetBoxPosition(TextBoxX, TextBoxY);
                 box.Append(VERTICAL_LINE);
                 Console.Write(box.ToString());
-                //this.Width - 2 for right and left box borders
-                //box.Append(' ', this.Width - 2);
-                
-                //box.Append(VERTICAL_LINE);
                 SetBoxPosition(TextBoxX + this.Width - 1, TextBoxY);
                 Console.Write(box.ToString());
                 TextBoxY++;
@@ -109,33 +96,16 @@ namespace TheSyndicate
             int startIndex = 0;
             int endIndex = lineWidth;
             int textStartX = TextBufferX + TextBoxX;
-            int textStartY = TextBufferY + TEXT_BOX_Y_DEFAULT;
+            int textStartY = TextBufferY + TextBoxY;
+
             int lastSpaceInALine;
 
 
             while (startIndex < text.Length)
             {
-                //TODO: Use this for line
-                //string dashChar;
                 lastSpaceInALine = CheckForLastSpaceInALine(lineWidth, endIndex);
 
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
-
-                //TODO: Need to work on getting \n to render properly, currently using SetBoxPosition to handle new lines.
-                //TODO: Lines 118-129 need work to handle when \n is at 0 index. Probably due to \n reading as 1 character and not two. Might need $();
-
-                //if (newLineIndex < endIndex && newLineIndex == 0 && (startIndex + newLineIndex + 1) < text.Length)
-                //{
-                //    boxText.Append(' ', TextBoxX + TextBufferX);
-                //    boxText.Append(text, startIndex, newLineIndex + 1);
-                //    SetBoxPosition(textStartX, textStartY);
-                //    Console.Write(boxText.ToString());
-                //    startIndex += 2;
-                //    endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
-                //    textStartY++;
-                //    boxText.Clear();
-                //}
-                //else
 
                 //checks if \n appears before maximum lineWidth, if so, then renders up to \n and continues to next line
                 if (newLineIndex < endIndex && newLineIndex != 0)
@@ -149,6 +119,8 @@ namespace TheSyndicate
                     this.Height += 1;
                     boxText.Clear();
                 }
+                //checks if last space in a line < endIndex, if so, renders up to last space index so it does not split words
+                //at the end of a line
                 else if (lastSpaceInALine < endIndex && endIndex - startIndex >= lineWidth)
                 {
                     boxText.Append(text, startIndex, lastSpaceInALine - startIndex);
