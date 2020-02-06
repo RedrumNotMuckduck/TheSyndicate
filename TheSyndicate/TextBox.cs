@@ -19,6 +19,7 @@ namespace TheSyndicate
         
         Regex NEW_LINE_PATTERN = new Regex($"\n");
 
+        public string Text { get; private set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public int TextBufferX { get; set; }
@@ -29,6 +30,7 @@ namespace TheSyndicate
 
         public TextBox(string text = "", int width = 100, int height = 2)
         {
+            this.Text = text;
             this.Width = width;
             this.Height = height;
             this.TextBufferX = 2;
@@ -108,11 +110,14 @@ namespace TheSyndicate
             int endIndex = lineWidth;
             int textStartX = TextBufferX + TextBoxX;
             int textStartY = TextBufferY + TEXT_BOX_Y_DEFAULT;
+            int lastSpaceInALine;
+
 
             while (startIndex < text.Length)
             {
                 //TODO: Use this for line
                 //string dashChar;
+                lastSpaceInALine = CheckForLastSpaceInALine(lineWidth, endIndex);
 
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
 
@@ -144,6 +149,17 @@ namespace TheSyndicate
                     this.Height += 1;
                     boxText.Clear();
                 }
+                else if (lastSpaceInALine < endIndex && endIndex - startIndex >= lineWidth)
+                {
+                    boxText.Append(text, startIndex, lastSpaceInALine - startIndex);
+                    SetBoxPosition(textStartX, textStartY);
+                    Console.Write(boxText.ToString());
+                    startIndex = lastSpaceInALine + 1;
+                    endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
+                    textStartY++;
+                    this.Height += 1;
+                    boxText.Clear();
+                }
                 else
                 {
                     boxText.Append(text, startIndex, endIndex - startIndex);
@@ -155,6 +171,11 @@ namespace TheSyndicate
                     this.Height += 1;
                     boxText.Clear();
                 }
+            }
+
+            int CheckForLastSpaceInALine(int lineWidth, int endIndex)
+            {
+                return this.Text.LastIndexOf(" ", endIndex, lineWidth);
             }
         }
     }
