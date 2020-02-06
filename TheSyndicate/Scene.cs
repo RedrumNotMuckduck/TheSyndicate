@@ -131,7 +131,7 @@ namespace TheSyndicate
             return userInput;
         }
 
-        bool IsValidInput(int userInput)
+        public bool IsValidInput(int userInput)
         {
             int numberOfOptions = this.Options.Length;
             return userInput >= 0 && userInput <= numberOfOptions;
