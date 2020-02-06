@@ -9,10 +9,11 @@ namespace TheSyndicate
         private const int MAXIMUM_BATTERY_POWER = 4;
         private static string PATH_TO_SAVE_STATE = @"..\..\..\assets\SaveState.json";
         public string CurrentSceneId { get; private set; }
-        private int BatteryPower { get; set; }
+        public int BatteryPower { get; set; }
 
         [JsonConstructor]
-        private Player(string currentSceneId, int batteryPower = MAXIMUM_BATTERY_POWER)
+        private Player(string currentSceneId = null,
+                       int batteryPower = MAXIMUM_BATTERY_POWER)
         {
             this.CurrentSceneId = currentSceneId;
             this.BatteryPower = batteryPower;
@@ -29,7 +30,14 @@ namespace TheSyndicate
 
         private static Player GetPlayerFromSaveState()
         {
-            return ConvertSaveStateToPlayer();
+            try
+            {
+                return ConvertSaveStateToPlayer();
+            }
+            catch
+            {
+                return new Player();
+            }
         }
 
         private static Player ConvertSaveStateToPlayer()
