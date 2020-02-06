@@ -31,7 +31,7 @@ namespace TheSyndicate
             this.Height = height;
             this.TextBufferX = 2;
             this.TextBufferY = 2;
-            this.TextBoxX = borderX; // (Console.WindowWidth - this.Width)/2;
+            this.TextBoxX = borderX;
             this.TextBoxY = borderY;
         }
 

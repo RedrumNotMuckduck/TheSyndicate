@@ -5,7 +5,8 @@ namespace TheSyndicate
 {
     public class Scene
     {
-        Player player = Player.Instance();
+        public static int SAVE_OPTION = 0;
+        Player player = Player.GetInstance();
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
@@ -28,7 +29,10 @@ namespace TheSyndicate
         {
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);
-            GetUserInput(sceneTextBox);
+            if (this.Options.Length > 0)
+            {
+                ExecutePlayerOption(sceneTextBox);
+            }
         }
 
         TextBox RenderText()
@@ -56,7 +60,6 @@ namespace TheSyndicate
             else
             {
                 RenderQuitMessage(sceneTextBox);
-                player.EmptySaveStateJSONfile();
             }
         }
 
@@ -75,7 +78,7 @@ namespace TheSyndicate
                 sceneTextBox.TextBoxY += 2;
             }
             sceneTextBox.SetBoxPosition(Console.WindowWidth - (Console.WindowWidth / 4), Console.WindowHeight - 2);
-            Console.WriteLine($"Press 0 at any point to save");
+            Console.WriteLine($"Press 0 at any point to save and quit.");
         }
 
         private void RenderInstructions(TextBox sceneTextBox)
@@ -94,35 +97,38 @@ namespace TheSyndicate
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
-        void GetUserInput(TextBox sceneTextBox)
+        private void ExecutePlayerOption(TextBox sceneTextBox)
         {
-            int selectedOption;
+            int userInput = GetValidUserInput(sceneTextBox);
+            if (userInput == SAVE_OPTION)
+            {
+                player.SavePlayerData(this.Id);
+                Environment.Exit(0);
+            }
+            else
+            {
+                SetDestinationId(userInput);
+            }
+        }
+
+        private int GetValidUserInput(TextBox sceneTextBox)
+        {
+            int userInput;
 
             do
             {
                 sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
-                Int32.TryParse(Console.ReadLine(), out selectedOption);
+                Int32.TryParse(Console.ReadLine(), out userInput);
             }
-            while (!IsValidInput(selectedOption));
+            while (!IsValidInput(userInput));
 
-            if (selectedOption == 0) 
-            {
-                //func 
-                player.SaveIDFunc(this.Id);
-                Console.WriteLine("Saved!");
-                Console.WriteLine("Continue when you are ready!!!!");
-                //GetUserInput();
-            } 
-            else 
-            {
-                SetDestinationId(selectedOption);
-            }           
+            return userInput;
         }
 
-        bool IsValidInput(int selectedOption)
+        public bool IsValidInput(int userInput)
         {
             int numberOfOptions = this.Options.Length;
-            return selectedOption >= 0 && selectedOption <= numberOfOptions;
+            return userInput >= 0 && userInput <= numberOfOptions;
         }
 
         void ClearConsole()

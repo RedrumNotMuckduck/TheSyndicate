@@ -8,14 +8,14 @@ namespace TheSyndicate
 {
     class GameEngine
     {
-        Player player = Player.Instance();
         private string PATH_TO_STORY = @"..\..\..\assets\story.json";
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
-
+        private Player Player { get; set; }
 
         public GameEngine()
         {
+            this.Player = Player.GetInstance();
             LoadScenes();
             LoadCurrentScene();
         }
@@ -29,7 +29,7 @@ namespace TheSyndicate
             {
                 PlayScene();
             }
-            CurrentScene.Play();
+            PlayFinalScene();
         }
 
         private void LoadScenes()
@@ -57,12 +57,6 @@ namespace TheSyndicate
             return JsonConvert.DeserializeObject<List<Scene>>(story);
         }
 
-        private string ConvertSaveIDFromJSON()
-        {
-            string savedID = File.ReadAllText(@"..\..\..\assets\SaveState.json");
-            return savedID;
-        }
-
         private string GetStoryFromFile()
         {
             return File.ReadAllText(PATH_TO_STORY);
@@ -70,34 +64,45 @@ namespace TheSyndicate
 
         private void LoadCurrentScene()
         {
-            CurrentScene = GetFirstScene();
+            CurrentScene = GetStartingScene();
+        }
+
+        private Scene GetStartingScene()
+        {
+            if (this.Player != null && this.Player.CurrentSceneId != null)
+            {
+                return GetSceneFromPlayer();
+            }
+            else
+            {
+                return GetFirstScene();
+            }
+        }
+
+        private Scene GetSceneFromPlayer()
+        {
+            Scene startScene = null;
+            foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+            {
+                if (scene.Key.Equals(Player.CurrentSceneId))
+                {
+                    startScene = scene.Value;
+                }
+            }
+            return startScene;
         }
 
         private Scene GetFirstScene()
         {
-            Scene firstScene = null;
-            string savedSceneId = ConvertSaveIDFromJSON();
-            if (!savedSceneId.Equals("0"))
+            Scene stateScene = null;
+            foreach (KeyValuePair<string, Scene> scene in this.Scenes)
             {
-                foreach (KeyValuePair<string, Scene> scene in this.Scenes)
+                if (scene.Value.Start == true)
                 {
-                    if (scene.Key.Equals(savedSceneId))
-                    {
-                        firstScene = scene.Value;
-                    }
+                    stateScene = scene.Value;
                 }
-                return firstScene;
-
             }
-            else
-            {
-                foreach (KeyValuePair<string, Scene> scene in this.Scenes)
-                {
-                    if (scene.Value.Start == true)
-                        firstScene = scene.Value;
-                }
-                return firstScene;
-            }
+            return stateScene;
         }
 
         private void PlayScene()
@@ -109,6 +114,13 @@ namespace TheSyndicate
         private Scene GetNextScene()
         {
             return this.Scenes[CurrentScene.ActualDestinationId];
+        }
+
+        private void PlayFinalScene()
+        {
+            string firstSceneId = GetFirstScene().Id;
+            Player.ResetPlayerData(firstSceneId);
+            CurrentScene.Play();
         }
     }
 }
