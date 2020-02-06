@@ -36,12 +36,12 @@ namespace TheSyndicate
         TextBox RenderText()
         {
             ClearConsole();
-            
+
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
 
-            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, (this.Text.Length / (Console.WindowWidth - 8)) + 4);
-            dialogBox.DrawDialogBox(this.Text);
+            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4);
             dialogBox.FormatText(this.Text);
+            dialogBox.DrawDialogBox(this.Text);
 
             //returning dialogBox for information about height of dialog box
 

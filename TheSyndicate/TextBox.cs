@@ -27,7 +27,7 @@ namespace TheSyndicate
         public int TextBoxY { get; set; }
         public int NewLines { get; set; }
 
-        public TextBox(string text = "", int width = 100, int height = 20)
+        public TextBox(string text = "", int width = 100, int height = 2)
         {
             this.Width = width;
             this.Height = height;
@@ -46,8 +46,9 @@ namespace TheSyndicate
         {
             StringBuilder box = new StringBuilder();
             // gets the number of \n in scene text to resize text box size to account for new lines in scene texts
-            MatchCollection matches = NEW_LINE_PATTERN.Matches(text);
-            this.Height += matches.Count/2;
+            //MatchCollection matches = NEW_LINE_PATTERN.Matches(text);
+            //this.Height += matches.Count;
+            
 
             DrawBoxTop(box);
             DrawBoxSides(box);
@@ -58,11 +59,11 @@ namespace TheSyndicate
         {
             box.Clear();
             box.Append(TOP_LEFT_CORNER);
-            // this.Width - 2 for corner characters
+            // this.Width - 2 accounts for corner characters
             box.Append(HORIZONTAL_LINE, this.Width - 2);
             box.Append(TOP_RIGHT_CORNER);
             SetBoxPosition(TextBoxX, TextBoxY);
-            Console.Write(box);
+            Console.Write(box.ToString());
             TextBoxY++;
         }
 
@@ -73,12 +74,15 @@ namespace TheSyndicate
             while (count++ < this.Height)
             {
                 box.Clear();
-                box.Append(VERTICAL_LINE);
-                //this.Width - 2 for right and left box borders
-                box.Append(' ', this.Width - 2);
-                box.Append(VERTICAL_LINE);
                 SetBoxPosition(TextBoxX, TextBoxY);
-                Console.WriteLine(box);
+                box.Append(VERTICAL_LINE);
+                Console.Write(box.ToString());
+                //this.Width - 2 for right and left box borders
+                //box.Append(' ', this.Width - 2);
+                
+                //box.Append(VERTICAL_LINE);
+                SetBoxPosition(TextBoxX + this.Width - 1, TextBoxY);
+                Console.Write(box.ToString());
                 TextBoxY++;
             }
         }
@@ -91,8 +95,7 @@ namespace TheSyndicate
             box.Append(HORIZONTAL_LINE, this.Width - 2);
             box.Append(BOTTOM_RIGHT_CORNER);
             SetBoxPosition(TextBoxX, TextBoxY);
-            Console.WriteLine(box);
-            //TextBoxY = TEXT_BOX_Y_DEFAULT;
+            Console.WriteLine(box.ToString());
         }
 
         public void FormatText(string text)
@@ -116,14 +119,14 @@ namespace TheSyndicate
                 //TODO: Need to work on getting \n to render properly, currently using SetBoxPosition to handle new lines.
                 //TODO: Lines 118-129 need work to handle when \n is at 0 index. Probably due to \n reading as 1 character and not two. Might need $();
 
-                //if (newLineIndex < endIndex && newLineIndex == 0 && (startIndex + newLineIndex + 2) < textLength)
+                //if (newLineIndex < endIndex && newLineIndex == 0 && (startIndex + newLineIndex + 1) < text.Length)
                 //{
                 //    boxText.Append(' ', TextBoxX + TextBufferX);
-                //    boxText.Append(text, startIndex, newLineIndex + 2);
+                //    boxText.Append(text, startIndex, newLineIndex + 1);
                 //    SetBoxPosition(textStartX, textStartY);
-                //    Console.Write(boxText);
+                //    Console.Write(boxText.ToString());
                 //    startIndex += 2;
-                //    endIndex = startIndex + lineWidth > textLength ? textLength : startIndex + lineWidth;
+                //    endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
                 //    textStartY++;
                 //    boxText.Clear();
                 //}
@@ -134,20 +137,22 @@ namespace TheSyndicate
                 {
                     boxText.Append(text, startIndex, newLineIndex - startIndex);
                     SetBoxPosition(textStartX, textStartY);
-                    Console.Write(boxText);
-                    startIndex = newLineIndex + 2;
+                    Console.Write(boxText.ToString());
+                    startIndex = newLineIndex + 1;
                     endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
                     textStartY++;
+                    this.Height += 1;
                     boxText.Clear();
                 }
                 else
                 {
                     boxText.Append(text, startIndex, endIndex - startIndex);
                     SetBoxPosition(textStartX, textStartY);
-                    Console.Write(boxText);
+                    Console.Write(boxText.ToString());
                     startIndex = endIndex;
                     endIndex = startIndex + lineWidth > text.Length ? text.Length : startIndex + lineWidth;
                     textStartY++;
+                    this.Height += 1;
                     boxText.Clear();
                 }
             }

@@ -80,7 +80,7 @@ namespace TheSyndicate.Actions
 
         private void RenderFightOptions()
         {
-            string options = "Left Hook  --> Right Dodge (Right Arrow Key)\n Right Hook --> Left Dodge (Left Arrow Key)\n Laser Beam --> Duck (Down Arrow Key)";
+            string options = "Left Hook  --> Right Dodge (Right Arrow Key)\nRight Hook --> Left Dodge (Left Arrow Key)\nLaser Beam --> Duck (Down Arrow Key)";
             TextBox instructions = new TextBox(options, Console.WindowWidth / 3);
             instructions.TextBoxX = Console.WindowWidth / 3;
             instructions.TextBoxY = Console.WindowHeight / 2 - 1;
