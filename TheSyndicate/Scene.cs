@@ -79,7 +79,7 @@ namespace TheSyndicate
                 optionsBoxY += 2;
             }
             sceneTextBox.SetBoxPosition(optionsBoxX, Console.WindowHeight - 2);
-            Console.WriteLine($"Press 0 at any point to save");
+            Console.WriteLine($"Press 0 at any point to save and quit.");
         }
 
         private void RenderInstructions(TextBox sceneTextBox, int optionsX, int optionsY)
@@ -103,9 +103,7 @@ namespace TheSyndicate
             if (userInput == SAVE_OPTION)
             {
                 player.SavePlayerData(this.Id);
-                Console.WriteLine("Saved!\nContinue when you are ready!!!!");
-                Console.ReadLine();
-                ExecutePlayerOption();
+                Environment.Exit(0);
             }
             else
             {
