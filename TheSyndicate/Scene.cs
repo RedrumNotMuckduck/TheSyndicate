@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
 using TheSyndicate.Actions;
 
 namespace TheSyndicate
@@ -31,18 +29,21 @@ namespace TheSyndicate
         {
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);
-            ExecutePlayerOption();
+            if (this.Options.Length > 0)
+            {
+                ExecutePlayerOption(sceneTextBox);
+            }
         }
 
         TextBox RenderText()
         {
             ClearConsole();
-            
+
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
 
-            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, (this.Text.Length / (Console.WindowWidth - 8)) + 4);
-            dialogBox.DrawDialogBox(this.Text);
+            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2) ;
             dialogBox.FormatText(this.Text);
+            dialogBox.DrawDialogBox(this.Text);
 
             //returning dialogBox for information about height of dialog box
 
@@ -51,55 +52,54 @@ namespace TheSyndicate
         
         void RenderOptions(TextBox sceneTextBox)
         {
-            int optionsBoxX = sceneTextBox.TextBoxX;
-            int optionsBoxY = sceneTextBox.Height + sceneTextBox.TextBoxY + sceneTextBox.TextBufferY;
-
             //checks for end scene
             if (this.Options.Length > 0) 
             {
-                RenderUserOptions(sceneTextBox, optionsBoxX, optionsBoxY);
+                RenderUserOptions(sceneTextBox);
             }
             else
             {
-                RenderQuitMessage(sceneTextBox, optionsBoxX, optionsBoxY);
+                RenderQuitMessage(sceneTextBox);
             }
         }
 
-        private void RenderUserOptions(TextBox sceneTextBox, int optionsBoxX, int optionsBoxY)
+        private void RenderUserOptions(TextBox sceneTextBox)
         {
-            sceneTextBox.SetBoxPosition(optionsBoxX, optionsBoxY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
 
-            RenderInstructions(sceneTextBox, optionsBoxX, optionsBoxY);
-            optionsBoxY += 6;
+            RenderInstructions(sceneTextBox);
 
             for (int i = 0; i < this.Options.Length; i++)
             {
-                sceneTextBox.SetBoxPosition(optionsBoxX, optionsBoxY);
+                sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
+
                 Console.WriteLine($"{i + 1}: {this.Options[i]}");
-                optionsBoxY += 2;
+                sceneTextBox.TextBoxY += 2;
             }
-            sceneTextBox.SetBoxPosition(optionsBoxX, Console.WindowHeight - 2);
+            sceneTextBox.SetBoxPosition(Console.WindowWidth - (Console.WindowWidth / 4), Console.WindowHeight - 2);
             Console.WriteLine($"Press 0 at any point to save and quit.");
         }
 
-        private void RenderInstructions(TextBox sceneTextBox, int optionsX, int optionsY)
+        private void RenderInstructions(TextBox sceneTextBox)
         {
-            optionsY += 4;
-            sceneTextBox.SetBoxPosition(optionsX, optionsY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
+
             Console.WriteLine("What will you do next? Enter the number next to the option and press enter:");
         }
 
-        private void RenderQuitMessage(TextBox sceneTextBox, int optionsX, int optionsY)
+        private void RenderQuitMessage(TextBox sceneTextBox)
         {
-            optionsY += 4;
-            sceneTextBox.SetBoxPosition(optionsX, optionsY);
+            sceneTextBox.TextBoxY += 2;
+            sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
             Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end.");
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
-        private void ExecutePlayerOption()
+        private void ExecutePlayerOption(TextBox sceneTextBox)
         {
-            int userInput = GetValidUserInput();
+            int userInput = GetValidUserInput(sceneTextBox);
             if (userInput == SAVE_OPTION)
             {
                 player.SavePlayerData(this.Id);
@@ -109,23 +109,19 @@ namespace TheSyndicate
             {
                 SetDestinationId(userInput);
             }
-
         }
 
-        private int GetValidUserInput()
+        private int GetValidUserInput(TextBox sceneTextBox)
         {
             int userInput;
 
             do
             {
-                //hides input text
-                Console.ForegroundColor = ConsoleColor.Black;
+                sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
                 Int32.TryParse(Console.ReadLine(), out userInput);
             }
             while (!IsValidInput(userInput));
 
-            //resets text color to green
-            Console.ForegroundColor = ConsoleColor.Green;
             return userInput;
         }
 

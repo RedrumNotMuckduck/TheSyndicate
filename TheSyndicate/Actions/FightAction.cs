@@ -30,21 +30,28 @@ namespace TheSyndicate.Actions
 
         public void ExecuteAction()
         {
+            Console.CursorVisible = false;
             RenderInstructions();
             WaitForPlayerToPressEnter();
             Fight();
             RenderEndMessage();
+            Console.CursorVisible = true;
         }
 
         private void RenderInstructions()
         {
+            TextBox instructions = new TextBox(INSTRUCTIONS, Console.WindowWidth / 3, 2, Console.WindowWidth / 3, Console.WindowHeight / 4);
             Console.Clear();
-            Console.WriteLine(INSTRUCTIONS);
+            instructions.SetBoxPosition(instructions.TextBoxX, instructions.TextBoxY);
+            instructions.FormatText(INSTRUCTIONS);
         }
 
         private void WaitForPlayerToPressEnter()
         {
-            Console.WriteLine("Press ENTER to continue.");
+            string enterPrompt = "Press ENTER to continue.";
+            Console.SetCursorPosition(Console.WindowWidth / 2 - enterPrompt.Length / 2, Console.WindowHeight - (Console.WindowHeight / 5));
+            Console.WriteLine(enterPrompt);
+
             ConsoleKey userInput = Console.ReadKey(true).Key;
             while (userInput != ConsoleKey.Enter)
             {
@@ -59,7 +66,8 @@ namespace TheSyndicate.Actions
                 CurrentDodge = Dodge.NoDodge;
                 RenderFightOptions();
                 SetCurrentAttack();
-                Console.WriteLine($"\n\nOpponent's attack: {CurrentAttack}");
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 18, Console.WindowHeight / 2);
+                Console.WriteLine($"Opponent's attack: {CurrentAttack}");
                 SetCurrentDodge();
                 if (UserSuccessfullyDodged())
                 {
@@ -70,8 +78,11 @@ namespace TheSyndicate.Actions
 
         private void RenderFightOptions()
         {
+            string options = "Left Hook  --> Right Dodge (Right Arrow Key)\nRight Hook --> Left Dodge (Left Arrow Key)\nLaser Beam --> Duck (Down Arrow Key)";
+            TextBox instructions = new TextBox(options, Console.WindowWidth / 3, 2, Console.WindowWidth/2 - Console.WindowWidth / 6, Console.WindowHeight / 4);
             Console.Clear();
-            Console.WriteLine("Left Hook  --> Right Dodge (Right Arrow Key)\nRight Hook --> Left Dodge (Left Arrow Key)\nLaser Beam --> Duck (Down Arrow Key)");
+            instructions.SetBoxPosition(instructions.TextBoxX, instructions.TextBoxY);
+            instructions.FormatText(options);
         }
 
         private void SetCurrentAttack()
@@ -139,11 +150,15 @@ namespace TheSyndicate.Actions
             Console.Clear();
             if (DidPlayerSucceed())
             {
-                Console.WriteLine($"Phew, that was close! You successfully dodged {SuccessfullDodges} attack(s). You've still been caught but at least you live to see another day. Off to the reclamation center you go.");
+                string successMessage = $"Phew, that was close! You successfully dodged {SuccessfullDodges} attack(s). You've still been caught but at least you live to see another day. Off to the reclamation center you go.";
+                Console.SetCursorPosition(Console.WindowWidth/2 - successMessage.Length/2, Console.WindowHeight/2);
+                Console.WriteLine(successMessage);
             }
             else
             {
-                Console.WriteLine("Darn, you were too slow. It was an honor to narrate you.");
+                string failMessage = $"Darn, you were too slow. It was an honor to narrate you.";
+                Console.SetCursorPosition(Console.WindowWidth / 2 - failMessage.Length / 2, Console.WindowHeight / 2);
+                Console.WriteLine(failMessage);
             }
             WaitForPlayerToPressEnter();
         }

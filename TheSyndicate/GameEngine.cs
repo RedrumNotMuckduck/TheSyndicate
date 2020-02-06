@@ -20,6 +20,18 @@ namespace TheSyndicate
             LoadCurrentScene();
         }
 
+        public void Start()
+        {
+            ConsoleWindow.ShowWindow(ConsoleWindow.ThisConsole, ConsoleWindow.MAXIMIZE);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.CursorVisible = true;
+            while (CurrentScene.HasNextScenes())
+            {
+                PlayScene();
+            }
+            PlayFinalScene();
+        }
+
         private void LoadScenes()
         {
             Scenes = GetScenes();
@@ -91,18 +103,6 @@ namespace TheSyndicate
                 }
             }
             return stateScene;
-        }
-
-        public void Start()
-        {
-            ConsoleWindow.ShowWindow(ConsoleWindow.ThisConsole, ConsoleWindow.MAXIMIZE);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.CursorVisible = false;
-            while (CurrentScene.HasNextScenes())
-            {
-                PlayScene();
-            }
-            PlayFinalScene();
         }
 
         private void PlayScene()

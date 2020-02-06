@@ -24,21 +24,27 @@ namespace TheSyndicate.Actions
 
         public void ExecuteAction()
         {
+            Console.CursorVisible = false;
             RenderInstructions();
             WaitForPlayerToPressEnter();
             HaveUserAlternatePressingSpacebarAndTab();
             RenderEndMessage();
+            Console.CursorVisible = true;
         }
         
         private void RenderInstructions()
         {
+            TextBox instructions = new TextBox(INSTRUCTIONS, Console.WindowWidth/2, 2, Console.WindowWidth / 4, Console.WindowHeight / 2);
             Console.Clear();
-            Console.WriteLine(INSTRUCTIONS);
+            instructions.SetBoxPosition(instructions.TextBoxX, instructions.TextBoxY);
+            instructions.FormatText(INSTRUCTIONS);
         }
 
         private void WaitForPlayerToPressEnter()
         {
-            Console.WriteLine("Press ENTER to continue.");
+            string enterPrompt = "Press ENTER to continue.";
+            Console.SetCursorPosition(Console.WindowWidth/2 - enterPrompt.Length/2, Console.WindowHeight - (Console.WindowHeight/4));
+            Console.WriteLine(enterPrompt);
             ConsoleKey userInput = Console.ReadKey(true).Key;
             while (userInput != ConsoleKey.Enter)
             {
@@ -50,6 +56,7 @@ namespace TheSyndicate.Actions
         private void HaveUserAlternatePressingSpacebarAndTab()
         {
             Console.Clear();
+            Console.SetCursorPosition(Console.WindowWidth/2 - 4, Console.WindowHeight/2);
             Console.WriteLine("START!!!");
             this.Stopwatch.Start();
             while (this.Stopwatch.Elapsed <= TimeSpan.FromSeconds(SECONDS_TO_PRESS_KEYS))
@@ -101,11 +108,15 @@ namespace TheSyndicate.Actions
             Console.Clear();
             if (DidPlayerSucceed())
             {
-                Console.WriteLine($"Congratulations! You alternated pressing Tab and Spacebar {SpacebarAndTabPresses} time(s).");
+                string successMessage = $"Congratulations! You alternated pressing Tab and Spacebar {SpacebarAndTabPresses} time(s).";
+                Console.SetCursorPosition(Console.WindowWidth/2 - (successMessage.Length / 2), Console.WindowHeight / 2);
+                Console.WriteLine(successMessage);
             }
             else
             {
-                Console.WriteLine("Darn, you were too slow. Looks like you're not going to make it.");
+                string failMessage = "Darn, you were too slow. Looks like you're not going to make it.";
+                Console.SetCursorPosition(Console.WindowWidth/2 - (failMessage.Length / 2), Console.WindowHeight / 2);
+                Console.WriteLine(failMessage);
             }
             WaitForPlayerToPressEnter();
         }
