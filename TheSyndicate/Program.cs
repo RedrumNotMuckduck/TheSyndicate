@@ -6,9 +6,12 @@ namespace TheSyndicate
     {
         static void Main(string[] args)
         {
-            
-            GameEngine gameEngine = new GameEngine();
-            gameEngine.Start();
+
+            //GameEngine gameEngine = new GameEngine();
+            //gameEngine.Start();
+
+            Board board = new Board();
+            board.Create(); 
         }
     }
 }
