@@ -58,19 +58,32 @@ namespace TheSyndicate
             Console.CursorLeft = LocationX;
             Console.Write(text); 
         } 
-        public void Create()
-        {
-            
-            CreateBoard(120, 40, 6, 3, ConsoleColor.White);
-            Draw();
-            RenderContent(8, 5, "Health");
-            Console.ReadLine(); 
 
+        public static void RenderGameTitle()
+        {
+            RenderContent(35, 5, " ▀▀█▀▀ █░░█ █▀▀   █▀▀ █░░█ █▀▀▄ █▀▀▄ ░▀░ █▀▀ █▀▀█ ▀▀█▀▀ █▀▀");
+            RenderContent(35, 6, " ░░█░░ █▀▀█ █▀▀   ▀▀█ █▄▄█ █░░█ █░░█ ▀█▀ █░░ █▄▄█ ░░█░░ █▀▀");
+            RenderContent(35, 7, " ░░▀░░ ▀░░▀ ▀▀▀   ▀▀▀ ▄▄▄█ ▀░░▀ ▀▀▀░ ▀▀▀ ▀▀▀ ▀░░▀ ░░▀░░ ▀▀▀");
         }
 
+        public static void RenderBattery()
+        {
+            RenderContent(35, 10, "█████████████████████████████████████████████");
+            RenderContent(35, 11, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ██");
+            RenderContent(35, 12, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ████");
+            RenderContent(35, 13, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ████");
+            RenderContent(35, 14, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ██");
+            RenderContent(35, 15, "█████████████████████████████████████████████"); 
+        }
 
-
-
-
+        public void Create()
+        {
+            CreateBoard(120, 40, 6, 3, ConsoleColor.White);
+            Draw();
+            RenderGameTitle();
+            RenderBattery();
+            RenderContent(35, 15, " "); 
+            Console.ReadLine(); 
+        }
     }
 }
