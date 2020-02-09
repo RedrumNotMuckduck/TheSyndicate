@@ -1,4 +1,5 @@
 ﻿using TheSyndicate.Actions;
+using System; 
 
 namespace TheSyndicate
 {
@@ -9,6 +10,7 @@ namespace TheSyndicate
 
             //GameEngine gameEngine = new GameEngine();
             //gameEngine.Start();
+            Console.SetWindowSize(200, 60);
 
             Board board = new Board();
             board.GenerateGameBoard(); 
