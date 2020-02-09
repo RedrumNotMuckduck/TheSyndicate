@@ -11,7 +11,7 @@ namespace TheSyndicate
             //gameEngine.Start();
 
             Board board = new Board();
-            board.Create(); 
+            board.GenerateGameBoard(); 
         }
     }
 }

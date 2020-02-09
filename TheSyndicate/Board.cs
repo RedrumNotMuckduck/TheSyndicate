@@ -52,13 +52,25 @@ namespace TheSyndicate
             Console.ResetColor();
         }
 
-        public static void RenderContent(int LocationX, int LocationY, string text)
+        public static void RenderContent(int locationX, int locationY, string text)
         {
-            Console.CursorTop = LocationY;
-            Console.CursorLeft = LocationX;
+            Console.CursorTop = locationY;
+            Console.CursorLeft = locationX;
             Console.Write(text); 
-        } 
+        }
+        public static void DrawLine(int Width, int locationX, int locationY)
+        {
+            string s = ""; 
+            for( int i = 1; i<= Width; i++)
+            {
+                s += "_"; 
+            }
 
+            Console.CursorTop = locationY;
+            Console.CursorLeft = locationX;
+            Console.Write(s); 
+
+        }
         public static void RenderGameTitle()
         {
             RenderContent(35, 5, " ▀▀█▀▀ █░░█ █▀▀   █▀▀ █░░█ █▀▀▄ █▀▀▄ ░▀░ █▀▀ █▀▀█ ▀▀█▀▀ █▀▀");
@@ -76,13 +88,13 @@ namespace TheSyndicate
             RenderContent(35, 15, "█████████████████████████████████████████████"); 
         }
 
-        public void Create()
+        public void GenerateGameBoard()
         {
             CreateBoard(120, 40, 6, 3, ConsoleColor.White);
             Draw();
+            DrawLine(120, 7, 20); 
             RenderGameTitle();
             RenderBattery();
-            RenderContent(35, 15, " "); 
             Console.ReadLine(); 
         }
     }
