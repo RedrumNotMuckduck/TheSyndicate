@@ -1,4 +1,5 @@
 ﻿using TheSyndicate.Actions;
+using System; 
 
 namespace TheSyndicate
 {
@@ -6,9 +7,10 @@ namespace TheSyndicate
     {
         static void Main(string[] args)
         {
-            
+
             GameEngine gameEngine = new GameEngine();
             gameEngine.Start();
+
         }
     }
 }
