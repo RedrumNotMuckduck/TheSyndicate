@@ -11,20 +11,36 @@ namespace TheSyndicate
         private static int LocationX;
         private static int LocationY;
         private static ConsoleColor BorderColor;
-
+        private static string HealthBar = "█████████████████████████████████████████  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  █████████████████████████████████████████ ";
+        
         public Board()
         {
             if (GameEngine.Is_Windows)
             {
-                //Console.SetWindowSize(200, 60); 
+                Console.SetWindowSize(200, 40);
             }
-            CreateBoard(120, 40, 6, 3, ConsoleColor.White);
-            Draw();
-            DrawLine(120, 7, 20);
-            RenderGameTitle();
-            RenderBattery();
-            Console.ReadLine();
+            //CreateBoard(120, 40, 6, 3, ConsoleColor.White);
+            //Draw();
+            //DrawLine(120, 7, 20);
+            //RenderGameTitle();
+            //RenderBattery();
+            //Console.ReadLine();
+            RenderHealthBar();
         }
+
+        private TextBox RenderHealthBar()
+        {
+            Console.Clear();
+
+            TextBox healthBarBox = new TextBox(HealthBar, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
+            healthBarBox.FormatText(HealthBar);
+            healthBarBox.DrawDialogBox(HealthBar);
+
+            //returning dialogBox for information about height of dialog box
+
+            return healthBarBox;
+        }
+
         private static void CreateBoard(int width, int height, int locationX, int locationY, ConsoleColor borderColor)
         {
             Width = width;
@@ -33,6 +49,7 @@ namespace TheSyndicate
             LocationY = locationY;
             BorderColor = borderColor;
         }
+
         public static void Draw()
         {
             string s = "╔";
@@ -72,6 +89,7 @@ namespace TheSyndicate
             Console.CursorLeft = locationX;
             Console.Write(text); 
         }
+
         public static void DrawLine(int Width, int locationX, int locationY)
         {
             string s = ""; 
@@ -83,8 +101,8 @@ namespace TheSyndicate
             Console.CursorTop = locationY;
             Console.CursorLeft = locationX;
             Console.Write(s); 
-
         }
+
         public static void RenderGameTitle()
         {
             RenderContent(35, 5, " ▀▀█▀▀ █░░█ █▀▀   █▀▀ █░░█ █▀▀▄ █▀▀▄ ░▀░ █▀▀ █▀▀█ ▀▀█▀▀ █▀▀");
