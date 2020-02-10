@@ -8,7 +8,7 @@ namespace TheSyndicate
     public class Player
     {
         private static Player _instance;
-        private const int MAXIMUM_BATTERY_POWER = 1; //Max should never exceed 6
+        private const int MAXIMUM_BATTERY_POWER = 6; //Max should never exceed 6
         private static string PATH_TO_SAVE_STATE { get; set; }
         public string CurrentSceneId { get; private set; }
         public int BatteryPower { get; set; }

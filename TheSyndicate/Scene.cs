@@ -148,7 +148,8 @@ namespace TheSyndicate
                 }
                 else
                 {
-                    this.ActualDestinationId = "dead";
+                    player.DecrementBatteryPowerByOne();
+                    //this.ActualDestinationId = "dead";
                 }
             }
             else if (this.Id.Equals("upload") || 
