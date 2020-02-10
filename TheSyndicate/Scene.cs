@@ -35,22 +35,21 @@ namespace TheSyndicate
             }
         }
 
-        TextBox RenderText()
+        private TextBox RenderText()
         {
-            ClearConsole();
-
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
 
             TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2) ;
+            dialogBox.TextBoxY += 10;
+            dialogBox.SetBoxPosition(dialogBox.TextBoxX, dialogBox.TextBoxY);
             dialogBox.FormatText(this.Text);
             dialogBox.DrawDialogBox(this.Text);
 
             //returning dialogBox for information about height of dialog box
-
             return dialogBox; 
         }
         
-        void RenderOptions(TextBox sceneTextBox)
+        private void RenderOptions(TextBox sceneTextBox)
         {
             //checks for end scene
             if (this.Options.Length > 0) 
@@ -149,7 +148,7 @@ namespace TheSyndicate
                 }
                 else
                 {
-                    this.ActualDestinationId = "dead";
+                    player.DecrementBatteryPowerByOne();
                 }
             }
             else if (this.Id.Equals("upload") || 
@@ -159,7 +158,11 @@ namespace TheSyndicate
                 Action.ExecuteAction();
                 if (!Action.DidPlayerSucceed())
                 {
-                    this.ActualDestinationId = "dead";
+                    player.DecrementBatteryPowerByOne();
+                }
+                else
+                {
+                    player.IncrementBatteryPowerByOne();
                 }
             }
         }
