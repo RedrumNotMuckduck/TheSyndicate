@@ -8,12 +8,9 @@ namespace TheSyndicate
         static void Main(string[] args)
         {
 
-            //GameEngine gameEngine = new GameEngine();
-            //gameEngine.Start();
-            Console.SetWindowSize(200, 60);
+            GameEngine gameEngine = new GameEngine();
+            gameEngine.Start();
 
-            Board board = new Board();
-            board.GenerateGameBoard(); 
         }
     }
 }

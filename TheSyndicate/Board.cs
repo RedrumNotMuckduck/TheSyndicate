@@ -11,6 +11,20 @@ namespace TheSyndicate
         private static int LocationX;
         private static int LocationY;
         private static ConsoleColor BorderColor;
+
+        public Board()
+        {
+            if (GameEngine.Is_Windows)
+            {
+                //Console.SetWindowSize(200, 60); 
+            }
+            CreateBoard(120, 40, 6, 3, ConsoleColor.White);
+            Draw();
+            DrawLine(120, 7, 20);
+            RenderGameTitle();
+            RenderBattery();
+            Console.ReadLine();
+        }
         private static void CreateBoard(int width, int height, int locationX, int locationY, ConsoleColor borderColor)
         {
             Width = width;
@@ -86,16 +100,6 @@ namespace TheSyndicate
             RenderContent(35, 13, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ████");
             RenderContent(35, 14, "██  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ██");
             RenderContent(35, 15, "█████████████████████████████████████████████"); 
-        }
-
-        public void GenerateGameBoard()
-        {
-            CreateBoard(120, 40, 6, 3, ConsoleColor.White);
-            Draw();
-            DrawLine(120, 7, 20); 
-            RenderGameTitle();
-            RenderBattery();
-            Console.ReadLine(); 
         }
     }
 }
