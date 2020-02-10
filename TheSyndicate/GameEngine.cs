@@ -122,7 +122,7 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
-            Player.UpdateBatteryImage();
+            if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }

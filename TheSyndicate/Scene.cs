@@ -149,7 +149,6 @@ namespace TheSyndicate
                 else
                 {
                     player.DecrementBatteryPowerByOne();
-                    //this.ActualDestinationId = "dead";
                 }
             }
             else if (this.Id.Equals("upload") || 
@@ -159,7 +158,11 @@ namespace TheSyndicate
                 Action.ExecuteAction();
                 if (!Action.DidPlayerSucceed())
                 {
-                    this.ActualDestinationId = "dead";
+                    player.DecrementBatteryPowerByOne();
+                }
+                else
+                {
+                    player.IncrementBatteryPowerByOne();
                 }
             }
         }
