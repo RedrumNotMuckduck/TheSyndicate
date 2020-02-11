@@ -25,6 +25,7 @@ namespace TheSyndicate
 
         public void Start()
         {
+            ConsoleWindow.MaximizeWindow();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
@@ -42,7 +43,6 @@ namespace TheSyndicate
             }
             else
             {
-                ConsoleWindow.MaximizeMacWindow();
                 return @"../../../assets/story.json";
             }
         }

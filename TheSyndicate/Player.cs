@@ -8,7 +8,7 @@ namespace TheSyndicate
     public class Player
     {
         private static Player _instance;
-        private const int MAXIMUM_BATTERY_POWER = 6; //Max should never exceed 6
+        private const int MAXIMUM_BATTERY_POWER = 4; //Max should never exceed 4
         private static string PATH_TO_SAVE_STATE { get; set; }
         public string CurrentSceneId { get; private set; }
         public int BatteryPower { get; set; }
@@ -100,9 +100,9 @@ namespace TheSyndicate
         public void UpdateBatteryImage()
         {
             //Max amount of "life" being displayed is 37 characters long
-            //We set MAX_BATTERY_POWER to 6 at begining of game
-            //Therefore the number of '▒' characters to display (int amountOfPowerToDisplay) is 6 * 6 + 1 = 37
-            int amountOfPowerToDisplay = 6 * this.BatteryPower + 1;
+            //We set MAX_BATTERY_POWER to 4 at begining of game
+            //Therefore the number of '▒' characters to display (int amountOfPowerToDisplay) is 9 * 4 + 1 = 37
+            int amountOfPowerToDisplay = 9 * this.BatteryPower + 1;
             //And the number of white spaces to display as the player loses
             //life is the difference between max life (37) and amountOfPowerToDisplay
             int amountOfSpacesToDisplay = 37 - amountOfPowerToDisplay;

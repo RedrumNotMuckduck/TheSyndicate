@@ -8,7 +8,7 @@ namespace TheSyndicate
         [DllImport("libc")]
         private static extern int system(string exec);
 
-        public static void MaximizeMacWindow()
+        public static void MaximizeWindow()
         {
             system(@"printf '\e[8;200;200t'");
         }
