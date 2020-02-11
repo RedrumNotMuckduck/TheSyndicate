@@ -8,8 +8,13 @@ namespace TheSyndicate
         static void Main(string[] args)
         {
 
-            GameEngine gameEngine = new GameEngine();
-            gameEngine.Start();
+            //GameEngine gameEngine = new GameEngine();
+            //gameEngine.Start();
+
+            IntroPage introPage = new IntroPage();
+            introPage.DisplayIntroScene(); 
+
+
 
         }
     }
