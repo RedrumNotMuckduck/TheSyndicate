@@ -42,6 +42,7 @@ namespace TheSyndicate
             }
             else
             {
+                ConsoleWindow.MaximizeMacWindow();
                 return @"../../../assets/story.json";
             }
         }
