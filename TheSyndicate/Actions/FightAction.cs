@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace TheSyndicate.Actions
 {
-    enum Attack { LeftHook, RightHook, LaserBeam}
+    enum Attack { LeftHook, RightHook, LaserBeam }
     enum Dodge { DodgeRight, DodgeLeft, Duck, NoDodge }
 
     class FightAction : IAction
@@ -68,7 +69,21 @@ namespace TheSyndicate.Actions
                 SetCurrentAttack();
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 18, Console.WindowHeight / 2);
                 Console.WriteLine($"Opponent's attack: {CurrentAttack}");
+                if (CurrentAttack == Attack.LaserBeam) 
+                { 
+                    Flash(AsciiArt.LaserBeamAscii);
+                }
+                else if (CurrentAttack == Attack.LeftHook)
+                {
+                    Flash(AsciiArt.LeftHookAscii);
+                }
+                else if (CurrentAttack == Attack.RightHook)
+                {
+                    Flash(AsciiArt.RightHookAscii);
+                }
                 SetCurrentDodge();
+                Thread.Sleep(100);
+
                 if (UserSuccessfullyDodged())
                 {
                     SuccessfullDodges++;
@@ -79,7 +94,7 @@ namespace TheSyndicate.Actions
         private void RenderFightOptions()
         {
             string options = "Left Hook  --> Right Dodge (Right Arrow Key)\nRight Hook --> Left Dodge (Left Arrow Key)\nLaser Beam --> Duck (Down Arrow Key)";
-            TextBox instructions = new TextBox(options, Console.WindowWidth / 3, 2, Console.WindowWidth/2 - Console.WindowWidth / 6, Console.WindowHeight / 4);
+            TextBox instructions = new TextBox(options, Console.WindowWidth / 3, 2, Console.WindowWidth / 2 - Console.WindowWidth / 6, Console.WindowHeight / 4);
             Console.Clear();
             instructions.SetBoxPosition(instructions.TextBoxX, instructions.TextBoxY);
             instructions.FormatText(options);
@@ -106,13 +121,38 @@ namespace TheSyndicate.Actions
             }
         }
 
+        static void Flash(string[] art)
+        {
+
+            for (int i = 0; i < art.Length; i++)
+            {
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 2 + i);
+                Console.WriteLine(art[i]);
+            }
+
+            Thread.Sleep(1000);
+            for (int i = 0; i < art.Length + 2 ; i++)
+            {
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                ClearCurrentConsoleLine();
+            }
+        }
+
+        public static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+        }
+
         private void GetUserInput()
         {
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
             while (this.Stopwatch.Elapsed <= TimeSpan.FromSeconds(SECONDS_USER_HAS_TO_DODGE))
             {
-                SetCurrentKeyPressed();                
+                SetCurrentKeyPressed();
             }
             this.Stopwatch.Stop();
         }
@@ -151,7 +191,7 @@ namespace TheSyndicate.Actions
             if (DidPlayerSucceed())
             {
                 string successMessage = $"Phew, that was close! You successfully dodged {SuccessfullDodges} attack(s). You've still been caught but at least you live to see another day. Off to the reclamation center you go.";
-                Console.SetCursorPosition(Console.WindowWidth/2 - successMessage.Length/2, Console.WindowHeight/2);
+                Console.SetCursorPosition(Console.WindowWidth / 2 - successMessage.Length / 2, Console.WindowHeight / 2);
                 Console.WriteLine(successMessage);
             }
             else
