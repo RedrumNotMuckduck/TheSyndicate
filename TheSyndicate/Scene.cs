@@ -34,6 +34,12 @@ namespace TheSyndicate
                 ExecutePlayerOption(sceneTextBox);
             }
         }
+        public void RenderScene()
+        {
+            TextBox sceneArt = new TextBox(SceneArt.GetCityAsciiArt(), Console.WindowWidth * 1 / 4, 2, (Console.WindowWidth - Console.WindowWidth * 3 / 4) * 2, 2);
+            sceneArt.SetBoxPosition(sceneArt.TextBoxX, sceneArt.TextBoxY);
+            sceneArt.FormatText(SceneArt.GetCityAsciiArt());
+        }
 
         private TextBox RenderText()
         {
@@ -159,10 +165,6 @@ namespace TheSyndicate
                 if (!Action.DidPlayerSucceed())
                 {
                     player.DecrementBatteryPowerByOne();
-                }
-                else
-                {
-                    player.IncrementBatteryPowerByOne();
                 }
             }
         }

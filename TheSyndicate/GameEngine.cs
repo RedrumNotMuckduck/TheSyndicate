@@ -25,6 +25,7 @@ namespace TheSyndicate
 
         public void Start()
         {
+            ConsoleWindow.MaximizeWindow();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
@@ -122,7 +123,11 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
-            if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
+            if (!CurrentScene.Start)
+            {
+                Player.UpdateBatteryImage();
+                CurrentScene.RenderScene();
+            }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }
