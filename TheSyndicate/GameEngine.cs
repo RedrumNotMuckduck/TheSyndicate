@@ -9,24 +9,23 @@ namespace TheSyndicate
 {
     class GameEngine
     {
-        private string PATH_TO_STORY = @"..\..\..\assets\story.json";
+        private string PATH_TO_STORY { get; set; }
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
         private Player Player { get; set; }
         public static readonly bool Is_Windows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-        public Board board = new Board();
-
 
         public GameEngine()
         {
             this.Player = Player.GetInstance();
+            this.PATH_TO_STORY = SetPathToStory();
             LoadScenes();
             LoadCurrentScene();
         }
 
         public void Start()
         {
-            ConsoleWindow.ShowWindow(ConsoleWindow.ThisConsole, ConsoleWindow.MAXIMIZE);
+            ConsoleWindow.MaximizeWindow();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
@@ -34,6 +33,18 @@ namespace TheSyndicate
                 PlayScene();
             }
             PlayFinalScene();
+        }
+
+        private string SetPathToStory()
+        {
+            if (Is_Windows)
+            {
+                return @"..\..\..\assets\story.json";
+            }
+            else
+            {
+                return @"../../../assets/story.json";
+            }
         }
 
         private void LoadScenes()
@@ -111,6 +122,12 @@ namespace TheSyndicate
 
         private void PlayScene()
         {
+            Console.Clear();
+            if (!CurrentScene.Start)
+            {
+                Player.UpdateBatteryImage();
+                CurrentScene.RenderScene();
+            }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }
