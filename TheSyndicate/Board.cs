@@ -16,7 +16,7 @@ namespace TheSyndicate
         {
             if (GameEngine.Is_Windows)
             {
-                //Console.SetWindowSize(200, 60); 
+                Console.SetWindowSize(200, 40); 
             }
             CreateBoard(120, 40, 6, 3, ConsoleColor.White);
             Draw();
