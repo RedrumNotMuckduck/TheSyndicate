@@ -93,7 +93,7 @@ namespace TheSyndicate
 
         public void RenderBattery()
         {
-            TextBox healthBarBox = new TextBox(BatteryImage, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
+            TextBox healthBarBox = new TextBox(BatteryImage, Console.WindowWidth * 1 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
             healthBarBox.FormatText(BatteryImage);
         }
 

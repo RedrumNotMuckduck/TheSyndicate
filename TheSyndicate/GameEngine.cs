@@ -123,7 +123,11 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
-            if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
+            if (!CurrentScene.Start)
+            {
+                Player.UpdateBatteryImage();
+                CurrentScene.RenderScene();
+            }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }
