@@ -12,7 +12,7 @@ namespace TheSyndicate
         private static string PATH_TO_SAVE_STATE { get; set; }
         public string CurrentSceneId { get; private set; }
         public int BatteryPower { get; set; }
-        private static string HealthBar { get; set; }
+        private static string BatteryImage { get; set; }
 
         [JsonConstructor]
         private Player(string currentSceneId = null,
@@ -91,10 +91,10 @@ namespace TheSyndicate
             return JsonConvert.SerializeObject(this);
         }
 
-        public void RenderHealthBar()
+        public void RenderBattery()
         {
-            TextBox healthBarBox = new TextBox(HealthBar, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
-            healthBarBox.FormatText(HealthBar);
+            TextBox healthBarBox = new TextBox(BatteryImage, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
+            healthBarBox.FormatText(BatteryImage);
         }
 
         public void UpdateBatteryImage()
@@ -106,21 +106,21 @@ namespace TheSyndicate
             //And the number of white spaces to display as the player loses
             //life is the difference between max life (37) and amountOfPowerToDisplay
             int amountOfSpacesToDisplay = 37 - amountOfPowerToDisplay;
-            StringBuilder currentHealth = new StringBuilder();
-            currentHealth.Append('█', 43);
+            StringBuilder currentBatteryState = new StringBuilder();
+            currentBatteryState.Append('█', 43);
             for (int i = 0; i < 4; i++)
             {
-                currentHealth.Append("\n██ ");
-                currentHealth.Append('▒', amountOfPowerToDisplay);
-                currentHealth.Append(' ', amountOfSpacesToDisplay);
-                currentHealth.Append(" ██");
-                if (i == 1 || i == 2) currentHealth.Append('█',2);
+                currentBatteryState.Append("\n██ ");
+                currentBatteryState.Append('▒', amountOfPowerToDisplay);
+                currentBatteryState.Append(' ', amountOfSpacesToDisplay);
+                currentBatteryState.Append(" ██");
+                if (i == 1 || i == 2) currentBatteryState.Append('█',2);
             }
-            currentHealth.Append('\n');
-            currentHealth.Append('█', 43);
+            currentBatteryState.Append('\n');
+            currentBatteryState.Append('█', 43);
 
-            HealthBar = currentHealth.ToString();
-            RenderHealthBar();
+            BatteryImage = currentBatteryState.ToString();
+            RenderBattery();
         }
 
         public void SetBatteryToFullPower()

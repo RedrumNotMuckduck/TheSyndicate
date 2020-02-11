@@ -160,10 +160,6 @@ namespace TheSyndicate
                 {
                     player.DecrementBatteryPowerByOne();
                 }
-                else
-                {
-                    player.IncrementBatteryPowerByOne();
-                }
             }
         }
         
