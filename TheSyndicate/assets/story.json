@@ -88,7 +88,8 @@
     "destinations": [ "hallway", "upload", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": "           ( `   )_\n          (    )    `)\n        (_   (_ .  _) _)\n                                (  )\n       _ .                   ( `  ) . )\n     (  _ )_               (_, _(  ,_)_)\n   (_  _(_ ,)"
+    "asciiArt": "     _________ \n   / __________\\\n  | ___________ |\n  | | UPLOAD  | |\n  | |_________| |\n  \\=____________/\n  / \"\"\"\"\"\"\"\"\"\"\" \\\n / ::::::::::::: \\"
+
   },
   {
     "id": "loveOneself",
