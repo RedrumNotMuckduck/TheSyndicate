@@ -13,9 +13,10 @@ namespace TheSyndicate
         public string[] Destinations { get; private set; }
         public string ActualDestinationId { get; private set; }
         public bool Start { get; private set; }
+        public string AsciiArt { get; private set; }
         public IAction Action { get; set; }
 
-        public Scene(string id, string text, string[] options, string[] destinations, bool start)
+        public Scene(string id, string text, string[] options, string[] destinations, bool start, string asciiArt)
         {
             this.Id = id;
             this.Text = text;
@@ -23,10 +24,12 @@ namespace TheSyndicate
             this.Destinations = destinations;
             this.ActualDestinationId = null;
             this.Start = start;
+            this.AsciiArt = asciiArt;
         }
 
         public void Play()
         {
+            RenderSceneAsciiArt();
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);
             if (this.Options.Length > 0)
@@ -34,11 +37,12 @@ namespace TheSyndicate
                 ExecutePlayerOption(sceneTextBox);
             }
         }
-        public void RenderScene()
+
+        public void RenderSceneAsciiArt()
         {
-            TextBox sceneArt = new TextBox(SceneArt.GetCityAsciiArt(), Console.WindowWidth * 1 / 4, 2, (Console.WindowWidth - Console.WindowWidth * 3 / 4) * 2, 2);
+            TextBox sceneArt = new TextBox(this.AsciiArt, Console.WindowWidth * 1 / 4, 2, (Console.WindowWidth - Console.WindowWidth * 3 / 4) * 2, 2);
             sceneArt.SetBoxPosition(sceneArt.TextBoxX, sceneArt.TextBoxY);
-            sceneArt.FormatText(SceneArt.GetCityAsciiArt());
+            sceneArt.FormatText(this.AsciiArt);
         }
 
         private TextBox RenderText()
