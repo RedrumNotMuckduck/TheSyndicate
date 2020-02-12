@@ -26,6 +26,8 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
+            IntroPage introPage = new IntroPage();
+            introPage.DisplayIntroScene();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
@@ -137,7 +139,7 @@ namespace TheSyndicate
         {
             string firstSceneId = GetFirstScene().Id;
             Player.ResetPlayerData(firstSceneId);
-            CurrentScene.Play();
+            PlayScene();
         }
     }
 }
