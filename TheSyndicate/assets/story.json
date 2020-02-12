@@ -88,7 +88,7 @@
     "destinations": [ "hallway", "upload", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt" : ""
+    "asciiArt": ""
   },
   {
     "id": "loveOneself",
@@ -110,7 +110,7 @@
     "destinations": [ "forest", "dead", "city" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "asciiArt": "================\\\\\n |----------||@  \\\\   ___\\\n |____|_____|||_/_\\\\_|___|_\\\n<|  ___\\    ||     | ____  |\\\n<| /    |___||_____|/    | |\\\n||/  O  |__________/  O  |_||\\\n  \\___/            \\___/"
   },
   {
     "id": "toaster",
