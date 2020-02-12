@@ -159,16 +159,16 @@ namespace TheSyndicate
         }
         private void DisplayGameTitle()
         {
-            Render(200 / 3, 30, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐", ConsoleColor.White);
-            Render(200 / 3, 31, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ", ConsoleColor.White);
-            Render(200 / 3, 32, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘", ConsoleColor.White);
+            Render(200 / 3, 35, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐", ConsoleColor.White);
+            Render(200 / 3, 36, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ", ConsoleColor.White);
+            Render(200 / 3, 37, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘", ConsoleColor.White);
         }
 
         private void DisplayGameMessage()
         {
-            Render(200 / 2, 34, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬", ConsoleColor.White);
-            Render(200 / 2, 35, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘", ConsoleColor.White);
-            Render(200 / 2, 36, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ ", ConsoleColor.White); 
+            Render(200 / 2, 40, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬", ConsoleColor.White);
+            Render(200 / 2, 41, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘", ConsoleColor.White);
+            Render(200 / 2, 42, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ ", ConsoleColor.White); 
         }
     }
 
