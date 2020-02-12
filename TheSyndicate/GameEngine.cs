@@ -141,7 +141,7 @@ namespace TheSyndicate
         {
             string firstSceneId = GetFirstScene().Id;
             Player.ResetPlayerData(firstSceneId);
-            CurrentScene.Play();
+            PlayScene();
         }
     }
 }

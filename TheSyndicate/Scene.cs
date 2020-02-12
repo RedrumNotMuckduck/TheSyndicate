@@ -24,7 +24,7 @@ namespace TheSyndicate
             this.ActualDestinationId = null;
             this.Start = start;
         }
-        
+
         public void Play()
         {
             TextBox sceneTextBox = RenderText();
@@ -44,21 +44,20 @@ namespace TheSyndicate
         private TextBox RenderText()
         {
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
-
-            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2) ;
+            TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
             dialogBox.TextBoxY += 10;
             dialogBox.SetBoxPosition(dialogBox.TextBoxX, dialogBox.TextBoxY);
             dialogBox.FormatText(this.Text);
             dialogBox.DrawDialogBox(this.Text);
 
             //returning dialogBox for information about height of dialog box
-            return dialogBox; 
+            return dialogBox;
         }
-        
+
         private void RenderOptions(TextBox sceneTextBox)
         {
             //checks for end scene
-            if (this.Options.Length > 0) 
+            if (this.Options.Length > 0)
             {
                 RenderUserOptions(sceneTextBox);
             }
@@ -72,7 +71,6 @@ namespace TheSyndicate
         {
             sceneTextBox.TextBoxY += 2;
             sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
-
             RenderInstructions(sceneTextBox);
 
             for (int i = 0; i < this.Options.Length; i++)
@@ -90,7 +88,6 @@ namespace TheSyndicate
         {
             sceneTextBox.TextBoxY += 2;
             sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
-
             Console.WriteLine("What will you do next? Enter the number next to the option and press enter:");
         }
 
@@ -100,6 +97,7 @@ namespace TheSyndicate
             sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
             Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end.");
             Console.ForegroundColor = ConsoleColor.Green;
+            Console.ReadKey();
         }
 
         private void ExecutePlayerOption(TextBox sceneTextBox)
@@ -119,7 +117,6 @@ namespace TheSyndicate
         private int GetValidUserInput(TextBox sceneTextBox)
         {
             int userInput;
-
             do
             {
                 sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
@@ -157,7 +154,7 @@ namespace TheSyndicate
                     player.DecrementBatteryPowerByOne();
                 }
             }
-            else if (this.Id.Equals("upload") || 
+            else if (this.Id.Equals("upload") ||
                 (this.Id.Equals("recyclerTruck") && this.ActualDestinationId.Equals("city")))
             {
                 this.Action = new KeyPressAction();
@@ -168,7 +165,7 @@ namespace TheSyndicate
                 }
             }
         }
-        
+
         public bool HasNextScenes()
         {
             return Destinations.Length > 0;
