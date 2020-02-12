@@ -39,6 +39,8 @@ namespace TheSyndicate
         {
             if (Is_Windows)
             {
+                IntroPage introPage = new IntroPage();
+                introPage.DisplayIntroScene();
                 return @"..\..\..\assets\story.json";
             }
             else

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading; 
+using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace TheSyndicate
 {
@@ -18,6 +19,8 @@ namespace TheSyndicate
 
         public void DisplayIntroScene()
         {
+            DisplayGameTitle();
+            DisplayGameMessage(); 
             ConsoleColor RobotColor = ConsoleColor.White;
             for (int i = 0; i < 200; i++)
             {
@@ -117,6 +120,7 @@ namespace TheSyndicate
             Render(200 / 2, 18, "  `Y888Y'", ConsoleColor.Red);
             Render(200 / 2, 19, "    `Y'", ConsoleColor.Red);
         }
+
         private void ClearHeart()
         {
             Render(200 / 2, 15, "           ", ConsoleColor.White);
@@ -152,6 +156,19 @@ namespace TheSyndicate
 
                 j += 5;
             }
+        }
+        private void DisplayGameTitle()
+        {
+            Render(200 / 3, 30, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐", ConsoleColor.White);
+            Render(200 / 3, 31, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ", ConsoleColor.White);
+            Render(200 / 3, 32, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘", ConsoleColor.White);
+        }
+
+        private void DisplayGameMessage()
+        {
+            Render(200 / 2, 34, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬", ConsoleColor.White);
+            Render(200 / 2, 35, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘", ConsoleColor.White);
+            Render(200 / 2, 36, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ ", ConsoleColor.White); 
         }
     }
 
