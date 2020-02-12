@@ -88,7 +88,7 @@
     "destinations": [ "hallway", "upload", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "asciiArt": "           ( `   )_\n          (    )    `)\n        (_   (_ .  _) _)\n                                (  )\n       _ .                   ( `  ) . )\n     (  _ )_               (_, _(  ,_)_)\n   (_  _(_ ,)"
   },
   {
     "id": "loveOneself",
@@ -143,6 +143,6 @@
     "destinations": [ "loveOneself", "city" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "asciiArt": "           ( `   )_\n          (    )    `)\n        (_   (_ .  _) _)\n                                (  )\n       _ .                   ( `  ) . )\n     (  _ )_               (_, _(  ,_)_)\n   (_  _(_ ,)"
   }
 ]
