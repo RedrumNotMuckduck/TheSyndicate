@@ -34,6 +34,7 @@ namespace TheSyndicate.Actions
             Console.CursorVisible = false;
             RenderInstructions();
             WaitForPlayerToPressEnter();
+            CountdownToFight();
             Fight();
             RenderEndMessage();
             Console.CursorVisible = true;
@@ -60,6 +61,16 @@ namespace TheSyndicate.Actions
             }
         }
 
+        private void CountdownToFight()
+        {
+            Console.Clear();
+            FlashCountdown(AsciiArt.ThreeAscii);
+            Thread.Sleep(700);
+            FlashCountdown(AsciiArt.TwoAscii);
+            Thread.Sleep(700);
+            FlashCountdown(AsciiArt.OneAscii);
+        }
+
         private void Fight()
         {
             for (int i = 0; i < NUMBER_OF_ATTACKS_TO_DEFEND_AGAINST; i++)
@@ -69,8 +80,8 @@ namespace TheSyndicate.Actions
                 SetCurrentAttack();
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 18, Console.WindowHeight / 2);
                 Console.WriteLine($"Opponent's attack: {CurrentAttack}");
-                if (CurrentAttack == Attack.LaserBeam) 
-                { 
+                if (CurrentAttack == Attack.LaserBeam)
+                {
                     Flash(AsciiArt.LaserBeamAscii);
                 }
                 else if (CurrentAttack == Attack.LeftHook)
@@ -90,6 +101,7 @@ namespace TheSyndicate.Actions
                 }
             }
         }
+
 
         private void RenderFightOptions()
         {
@@ -123,16 +135,35 @@ namespace TheSyndicate.Actions
 
         static void Flash(string[] art)
         {
-
             for (int i = 0; i < art.Length; i++)
             {
+                // Sets "art" to be under $"Opponent's attack: {CurrentAttack}"
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 2 + i);
                 Console.WriteLine(art[i]);
             }
 
             Thread.Sleep(1000);
-            for (int i = 0; i < art.Length + 2 ; i++)
+            for (int i = 0; i < art.Length + 2; i++)
             {
+                // Clears image from the bottom up
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                ClearCurrentConsoleLine();
+            }
+        }
+
+        private void FlashCountdown(string[] art)
+        {
+            for (int i = 0; i < art.Length; i++)
+            {
+                // Centers the image 
+                Console.SetCursorPosition(Console.WindowWidth / 3, Console.WindowHeight / 5 + i);
+                Console.WriteLine(art[i]);
+            }
+
+            Thread.Sleep(800);
+            for (int i = 0; i < art.Length + 2; i++)
+            {
+                // Clears image from the bottom up
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                 ClearCurrentConsoleLine();
             }
@@ -140,6 +171,7 @@ namespace TheSyndicate.Actions
 
         public static void ClearCurrentConsoleLine()
         {
+            // Replaces text with empty string
             int currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
@@ -196,7 +228,7 @@ namespace TheSyndicate.Actions
             }
             else
             {
-                string failMessage = $"Darn, you were too slow. It was an honor to narrate you.";
+                string failMessage = $"Darn, you were too slow. You have lost battery power.";
                 Console.SetCursorPosition(Console.WindowWidth / 2 - failMessage.Length / 2, Console.WindowHeight / 2);
                 Console.WriteLine(failMessage);
             }
