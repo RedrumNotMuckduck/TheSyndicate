@@ -46,6 +46,7 @@ namespace TheSyndicate
 
         public void Play()
         {
+            if (!this.Start) { player.UpdateBatteryImage(); }
             RenderSceneAsciiArt();
             TextBox sceneTextBox = RenderText();
             RenderOptions(sceneTextBox);

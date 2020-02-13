@@ -122,8 +122,6 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
-            //TODO: Move this if statement into player class
-            if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }
