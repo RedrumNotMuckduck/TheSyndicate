@@ -26,8 +26,8 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            IntroPage introPage = new IntroPage();
-            introPage.DisplayIntroScene();
+            Animations Animations = new Animations();
+            Animations.DisplayIntroScene();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
