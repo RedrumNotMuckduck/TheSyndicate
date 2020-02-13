@@ -4,7 +4,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-
 namespace TheSyndicate
 {
     class GameEngine
@@ -26,9 +25,7 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            Animations Animations = new Animations();
-            Animations.DisplayIntroScene();
-            Console.ForegroundColor = ConsoleColor.Green;
+            //Animations.DisplayIntroScene();
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes())
             {
@@ -125,6 +122,7 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
+            //TODO: Move this if statement into player class
             if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
             CurrentScene.Play();
             CurrentScene = GetNextScene();

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using System.Runtime.InteropServices;
 
 namespace TheSyndicate
 {
     public class Animations
     {
-        private int WindowSize = 200;
+        private static int WindowSize = 180;
         private ConsoleColor Red = ConsoleColor.Red;
         private Player player = Player.GetInstance();
 
@@ -21,14 +18,14 @@ namespace TheSyndicate
             Console.ResetColor();
         }
 
-        public void DisplayIntroScene()
+        public static void DisplayIntroScene()
         {
             DisplayGameTitle();
             DisplayGameMessage(); 
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
                 DisplayRobot(cursorLeft);
-                Thread.Sleep(200);
+                Thread.Sleep(400);
                 ClearMovement();
             }
         }
@@ -36,20 +33,21 @@ namespace TheSyndicate
         public void DisplayDeadEnding()
         {
             player.SetBatteryToFullPower();
-            for (int i = 0; i < player.BatteryPower; i++)
+            int MAX_BATTERY_POWER = 5;
+            for (int i = 0; i < MAX_BATTERY_POWER; i++)
             {
                 player.UpdateBatteryImage();
-                Thread.Sleep(300);
+                Thread.Sleep(400);
                 player.DecrementBatteryPowerByOne();
             }
         }
 
         public void DisplayLoveYourselfEnding()
         {
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
                 //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
-                if (cursorLeft > this.WindowSize / 2 - 11)
+                if (cursorLeft > WindowSize / 2 - 11)
                 {
                     ClearHeart();
                     DisplayRobot(cursorLeft, Red);
@@ -67,26 +65,26 @@ namespace TheSyndicate
 
         private void DisplayHeart()
         {
-            Render(this.WindowSize / 2, 15, ",d88b.d88b,", Red);
-            Render(this.WindowSize / 2, 16, "88888888888", Red);
-            Render(this.WindowSize / 2, 17, "`Y8888888Y'", Red);
-            Render(this.WindowSize / 2, 18, "  `Y888Y'", Red);
-            Render(this.WindowSize / 2, 19, "    `Y'", Red);
+            Render(WindowSize / 2, 15, ",d88b.d88b,", Red);
+            Render(WindowSize / 2, 16, "88888888888", Red);
+            Render(WindowSize / 2, 17, "`Y8888888Y'", Red);
+            Render(WindowSize / 2, 18, "  `Y888Y'", Red);
+            Render(WindowSize / 2, 19, "    `Y'", Red);
         }
 
         private void ClearHeart()
         {
-            Render(this.WindowSize / 2, 15, "           ");
-            Render(this.WindowSize / 2, 16, "           ");
-            Render(this.WindowSize / 2, 17, "           ");
-            Render(this.WindowSize / 2, 18, "           ");
-            Render(this.WindowSize / 2, 19, "           ");
+            Render(WindowSize / 2, 15, "           ");
+            Render(WindowSize / 2, 16, "           ");
+            Render(WindowSize / 2, 17, "           ");
+            Render(WindowSize / 2, 18, "           ");
+            Render(WindowSize / 2, 19, "           ");
         }
 
-        private void ClearMovement()
+        private static void ClearMovement()
         {
             //Iterate through Window size - 5 to avoid out of bound exception
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize - 5; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize - 5; cursorLeft+=5)
             {
                 Render(cursorLeft, 10, "      ");
                 Render(cursorLeft, 11, "      ");
@@ -110,21 +108,21 @@ namespace TheSyndicate
             }
         }
 
-        private void DisplayGameTitle()
+        private static void DisplayGameTitle()
         {
-            Render(this.WindowSize / 3, 35, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐");
-            Render(this.WindowSize / 3, 36, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ");
-            Render(this.WindowSize / 3, 37, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘");
+            Render(WindowSize / 3, 35, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐");
+            Render(WindowSize / 3, 36, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ");
+            Render(WindowSize / 3, 37, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘");
         }
 
-        private void DisplayGameMessage()
+        private static void DisplayGameMessage()
         {
-            Render(this.WindowSize / 2, 40, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬");
-            Render(this.WindowSize / 2, 41, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘");
-            Render(this.WindowSize / 2, 42, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ "); 
+            Render(WindowSize / 2, 40, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬");
+            Render(WindowSize / 2, 41, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘");
+            Render(WindowSize / 2, 42, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ "); 
         }
 
-        private void DisplayRobot(int cursorLeft, ConsoleColor color = ConsoleColor.White)
+        private static void DisplayRobot(int cursorLeft, ConsoleColor color = ConsoleColor.White)
         {
             Render(cursorLeft, 10, "             _____", color);
             Render(cursorLeft, 11, "            /_____\\", color);

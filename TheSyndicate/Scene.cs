@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TheSyndicate.Actions;
 
 namespace TheSyndicate
@@ -14,10 +15,13 @@ namespace TheSyndicate
         public string ActualDestinationId { get; private set; }
         public bool Start { get; private set; }
         public string AsciiArt { get; private set; }
+        public ConsoleColor Color { get; private set; }
+        public Dictionary<string, ConsoleColor> AllColors { get; set; }
         public IAction Action { get; set; }
 
-        public Scene(string id, string text, string[] options, string[] destinations, bool start, string asciiArt)
+        public Scene(string id, string text, string[] options, string[] destinations, bool start, string asciiArt, string color)
         {
+            this.AllColors = LoadColors();
             this.Id = id;
             this.Text = text;
             this.Options = options;
@@ -25,6 +29,19 @@ namespace TheSyndicate
             this.ActualDestinationId = null;
             this.Start = start;
             this.AsciiArt = asciiArt;
+            this.Color = this.AllColors[color];
+        }
+
+        public Dictionary<string, ConsoleColor> LoadColors()
+        {
+            Dictionary<string, ConsoleColor> Colors= new Dictionary<string, ConsoleColor>();
+            Colors.Add("red", ConsoleColor.Red);
+            Colors.Add("yellow", ConsoleColor.Yellow);
+            Colors.Add("green", ConsoleColor.Green);
+            Colors.Add("gray", ConsoleColor.Gray);
+            Colors.Add("white", ConsoleColor.White);
+            Colors.Add("blue", ConsoleColor.Blue);
+            return Colors;
         }
 
         public void Play()
@@ -40,6 +57,7 @@ namespace TheSyndicate
 
         public void RenderSceneAsciiArt()
         {
+            Console.ForegroundColor = this.Color;
             TextBox sceneArt = new TextBox(this.AsciiArt, Console.WindowWidth * 1 / 4, 2, (Console.WindowWidth - Console.WindowWidth * 3 / 4) * 2, 2);
             sceneArt.SetBoxPosition(sceneArt.TextBoxX, sceneArt.TextBoxY);
             sceneArt.FormatText(this.AsciiArt);
@@ -47,6 +65,7 @@ namespace TheSyndicate
 
         private TextBox RenderText()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             //TextBox is instantiated to pass this.Text and get access to TextBox Width and Height properties 
             TextBox dialogBox = new TextBox(this.Text, Console.WindowWidth * 3 / 4, 2, (Console.WindowWidth - (Console.WindowWidth * 3 / 4)) / 2, 2);
             dialogBox.TextBoxY += 10;
@@ -60,6 +79,7 @@ namespace TheSyndicate
 
         private void RenderOptions(TextBox sceneTextBox)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             //checks for end scene
             if (this.Options.Length > 0)
             {
