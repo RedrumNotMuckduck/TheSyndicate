@@ -6,7 +6,7 @@ namespace TheSyndicate
     public class Scene
     {
         public static int SAVE_OPTION = 0;
-        Player player = Player.GetInstance();
+        private Player player = Player.GetInstance();
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
