@@ -69,8 +69,8 @@
     "destinations": [ "city", "fight" ],
     "actualDestinationId": null,
     "start": false,
-    "color": "yellow",
-    "asciiArt": ""
+    "color": "white",
+    "asciiArt": "█▀▄          ╓▀█\n█ ╟▀▄      ▄▀█ █\n█ ╟ ╫▀▄╗╗▄▀█ █ █\n█ ╟ ╫ ▌  ▐▌█ █ █\n█ ╟ █▀└└└└▀█ █ █\n█ ▓▀        ▀█ █\n█▀            ╙█"
   },
   {
     "id": "introduction",
@@ -96,7 +96,7 @@
     "actualDestinationId": null,
     "start": false,
     "color": "white",
-    "asciiArt": "      |\\_/|                  \n      | @ @   Woof! \n      |   <>              _  \n      |  _/\\------____ ((| |))\n      |               `--' |     \n  ____|_       ___|   |___.'\n/_/_____/____/_______|"
+    "asciiArt": ""
   },
   {
     "id": "loveOneself",
@@ -106,7 +106,7 @@
     "actualDestinationId": null,
     "start": false,
     "color": "red",
-    "asciiArt": ""
+    "asciiArt": " d88b.d88b\n88888888888\n`Y8888888Y'\n  `Y888Y'\n    `Y'"
   },
   {
     "id": "recyclerTruck",
