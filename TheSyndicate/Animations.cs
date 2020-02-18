@@ -6,7 +6,10 @@ namespace TheSyndicate
     public class Animations
     {
         private static int WindowSize = 180;
-        private static ConsoleColor Red = ConsoleColor.Red;
+        private ConsoleColor Red = ConsoleColor.Red;
+        private ConsoleColor Yellow = ConsoleColor.Yellow;
+        private ConsoleColor Blue = ConsoleColor.Blue; 
+      
         private Player player = Player.GetInstance();
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
@@ -75,6 +78,47 @@ namespace TheSyndicate
                 }
             }
         }
+        public void DisplayFoundDogEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, 20, Yellow);
+                    break;
+                }
+                else
+                {
+                    DisplayDog();
+                    DisplayRobot(cursorLeft, 20);
+                    Thread.Sleep(400);
+                    ClearMovement(cursorLeft, 20);
+                }
+            }
+        }
+
+        public void DisplayFoundToasterEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, 20, Blue);
+                    break;
+                }
+                else
+                {
+                    DisplayToaster(); 
+                    DisplayRobot(cursorLeft, 20);
+                    Thread.Sleep(400);
+                    ClearMovement(cursorLeft, 20);
+                }
+            }
+        }
 
         private void DisplayHeart()
         {
@@ -92,6 +136,39 @@ namespace TheSyndicate
             Render(WindowSize / 2, 27, "           ");
             Render(WindowSize / 2, 28, "           ");
             Render(WindowSize / 2, 29, "           ");
+        }
+
+        private void DisplayDog()
+        {
+            Render(this.WindowSize / 2, 40, "      |\\_ /|", Yellow);
+            Render(this.WindowSize / 2, 41, "      | @ @   Woof!", Yellow);
+            Render(this.WindowSize / 2, 42, "      |   <> _", Yellow);
+            Render(this.WindowSize / 2, 43, "      | _ /\\------____((| |))", Yellow);
+            Render(this.WindowSize / 2, 44, "      |               `--' |", Yellow);
+            Render(this.WindowSize / 2, 45, " ____ | _       ___ |   | ___.'", Yellow);
+            Render(this.WindowSize / 2, 46, "/ _/_____/ ____/ _______|", Yellow);
+        }
+
+        private void DisplayToaster()
+        {
+            Render(this.WindowSize / 2, 20, ".-(  )) ))-. ", Blue);
+            Render(this.WindowSize / 2, 21, " |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
+            Render(this.WindowSize / 2, 22, " |#          ||", Blue);
+            Render(this.WindowSize / 2, 23, " |#          ||", Blue);
+            Render(this.WindowSize / 2, 24, " |           |;", Blue);
+            Render(this.WindowSize / 2, 25, ".=== '----_------'", Blue);
+            Render(this.WindowSize / 2, 26, "(______.- (_ =", Blue);
+        }
+
+        private void ClearDogorToaster()
+        {
+            Render(this.WindowSize / 2, 40, "                           ");
+            Render(this.WindowSize / 2, 41, "                           ");
+            Render(this.WindowSize / 2, 42, "                           ");
+            Render(this.WindowSize / 2, 43, "                           ");
+            Render(this.WindowSize / 2, 44, "                           ");
+            Render(this.WindowSize / 2, 45, "                           ");
+            Render(this.WindowSize / 2, 46, "                           ");
         }
 
         private void ClearMovement(int cursorTopStart, int cursorTopEnd)
