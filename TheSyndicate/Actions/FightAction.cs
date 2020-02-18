@@ -7,7 +7,7 @@ namespace TheSyndicate.Actions
     enum Attack { LeftHook, RightHook, LaserBeam }
     enum Dodge { DodgeRight, DodgeLeft, Duck, NoDodge }
 
-    class FightAction : IAction
+    public class FightAction : IAction
     {
         private static int SECONDS_USER_HAS_TO_DODGE = 1;
         private static int TIMES_USER_MUST_DODGE_ATTACKS = 3;
@@ -46,7 +46,7 @@ namespace TheSyndicate.Actions
             instructions.FormatText(INSTRUCTIONS);
         }
 
-        private void WaitForPlayerToPressEnter()
+        public static void WaitForPlayerToPressEnter()
         {
             string enterPrompt = "Press ENTER to continue.";
             Console.SetCursorPosition(Console.WindowWidth / 2 - enterPrompt.Length / 2, Console.WindowHeight - (Console.WindowHeight / 5));
