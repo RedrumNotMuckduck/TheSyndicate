@@ -84,47 +84,6 @@ namespace TheSyndicate
                 }
             }
         }
-        public void DisplayFoundDogEnding()
-        {
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
-            {
-                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
-                if (cursorLeft > this.WindowSize / 2 - 11)
-                {
-                    ClearDogorToaster();
-                    DisplayRobot(cursorLeft, 20, Yellow);
-                    break;
-                }
-                else
-                {
-                    DisplayDog();
-                    DisplayRobot(cursorLeft, 20);
-                    Thread.Sleep(400);
-                    ClearMovement(cursorLeft, 20);
-                }
-            }
-        }
-
-        public void DisplayFoundToasterEnding()
-        {
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
-            {
-                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
-                if (cursorLeft > this.WindowSize / 2 - 11)
-                {
-                    ClearDogorToaster();
-                    DisplayRobot(cursorLeft, 20, Blue);
-                    break;
-                }
-                else
-                {
-                    DisplayToaster(); 
-                    DisplayRobot(cursorLeft, 20);
-                    Thread.Sleep(400);
-                    ClearMovement(cursorLeft, 20);
-                }
-            }
-        }
 
         private void DisplayHeart()
         {
