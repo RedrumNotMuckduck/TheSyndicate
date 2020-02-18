@@ -6,7 +6,7 @@ namespace TheSyndicate
     public class Animations
     {
         private static int WindowSize = 180;
-        private ConsoleColor Red = ConsoleColor.Red;
+        private static ConsoleColor Red = ConsoleColor.Red;
         private Player player = Player.GetInstance();
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
@@ -42,7 +42,7 @@ namespace TheSyndicate
             }
         }
 
-        public void DisplayLoveYourselfEnding()
+        public static void DisplayLoveYourselfEnding()
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
@@ -63,7 +63,7 @@ namespace TheSyndicate
             }
         }
 
-        private void DisplayHeart()
+        private static void DisplayHeart()
         {
             Render(WindowSize / 2, 15, ",d88b.d88b,", Red);
             Render(WindowSize / 2, 16, "88888888888", Red);
@@ -72,7 +72,7 @@ namespace TheSyndicate
             Render(WindowSize / 2, 19, "    `Y'", Red);
         }
 
-        private void ClearHeart()
+        private static void ClearHeart()
         {
             Render(WindowSize / 2, 15, "           ");
             Render(WindowSize / 2, 16, "           ");

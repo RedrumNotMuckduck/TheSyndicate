@@ -25,13 +25,15 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            //Animations.DisplayIntroScene();
+            //Animations.DisplayLoveYourselfEnding();
             Console.CursorVisible = true;
-            while (CurrentScene.HasNextScenes())
+            while (CurrentScene.HasNextScenes() && Player.HasBatteryLife())
             {
                 PlayScene();
             }
-            PlayFinalScene();
+            Console.Clear();
+            Console.WriteLine("YOU DEAD");
+            //PlayFinalScene();
         }
 
         private string SetPathToStory()

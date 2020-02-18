@@ -170,14 +170,11 @@ namespace TheSyndicate
             {
                 this.Action = new FightAction();
                 Action.ExecuteAction();
-                if (Action.DidPlayerSucceed())
-                {
-                    this.ActualDestinationId = "recyclerTruck";
-                }
-                else
+                if (!Action.DidPlayerSucceed())
                 {
                     player.DecrementBatteryPowerByOne();
                 }
+                this.ActualDestinationId = "recyclerTruck";
             }
             else if (this.Id.Equals("upload") ||
                 (this.Id.Equals("recyclerTruck") && this.ActualDestinationId.Equals("city")))
@@ -195,5 +192,7 @@ namespace TheSyndicate
         {
             return Destinations.Length > 0;
         }
+
+
     }
 }
