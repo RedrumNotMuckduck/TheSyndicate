@@ -12,6 +12,7 @@ namespace TheSyndicate
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
         private Player Player { get; set; }
+        private Animations Animations = new Animations();
         public static readonly bool Is_Windows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         public GameEngine()
@@ -25,15 +26,13 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            //Animations.DisplayLoveYourselfEnding();
+            Animations.DisplayIntroScene();
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes() && Player.HasBatteryLife())
             {
                 PlayScene();
             }
-            Console.Clear();
-            Console.WriteLine("YOU DEAD");
-            //PlayFinalScene();
+            PlayFinalScene();
         }
 
         private string SetPathToStory()
@@ -135,6 +134,7 @@ namespace TheSyndicate
 
         private void PlayFinalScene()
         {
+            Console.Clear();
             string firstSceneId = GetFirstScene().Id;
             Player.ResetPlayerData(firstSceneId);
             PlayScene();

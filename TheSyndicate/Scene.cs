@@ -8,6 +8,7 @@ namespace TheSyndicate
     {
         public static int SAVE_OPTION = 0;
         private Player player = Player.GetInstance();
+        private Animations Animations = new Animations();
         public string Id { get; private set; }
         public string Text { get; private set; }
         public string[] Options { get; private set; }
@@ -88,6 +89,7 @@ namespace TheSyndicate
             }
             else
             {
+                Animations.DisplayUniqueEnding(this.Id);
                 RenderQuitMessage(sceneTextBox);
             }
         }
@@ -158,12 +160,7 @@ namespace TheSyndicate
             return userInput >= 0 && userInput <= numberOfOptions;
         }
 
-        void ClearConsole()
-        {
-            Console.Clear();
-        }
-
-        void SetDestinationId(int selectedOption)
+        private void SetDestinationId(int selectedOption)
         {
             this.ActualDestinationId = this.Destinations[selectedOption - 1];
             if (this.ActualDestinationId.Equals("fight"))
@@ -192,7 +189,5 @@ namespace TheSyndicate
         {
             return Destinations.Length > 0;
         }
-
-
     }
 }
