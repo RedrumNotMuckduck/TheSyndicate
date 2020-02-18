@@ -14,6 +14,7 @@ namespace TheSyndicate
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
         {
+            Console.CursorVisible = false;
             Console.ForegroundColor = displayColor;
             Console.CursorLeft = cursorLeft;
             Console.CursorTop = cursorTop;
@@ -41,6 +42,8 @@ namespace TheSyndicate
                     DisplayLoveYourselfEnding();
                     break;
                 case "animal":
+                    Actions.FightAction.WaitForPlayerToPressEnter();
+                    Console.Clear();
                     DisplayFoundDogEnding();
                     break;
                 case "toaster":
@@ -107,19 +110,18 @@ namespace TheSyndicate
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft += 5)
             {
-                DisplayDog();
-                //The dog is 30px wide, so we subtract 30 so that the robot turns yellow when the dog is overlapped
-                if (cursorLeft > WindowSize / 2 - 30)
+                //The dog is 31px wide, so we subtract 31 so that the robot turns yellow when the dog is overlapped
+                if (cursorLeft > WindowSize / 2 - 31)
                 {
-                    ClearDogorToaster();
-                    DisplayRobot(cursorLeft, 20, Yellow);
+                    DisplayRobot(cursorLeft, 10, Yellow);
                     break;
                 }
                 else
                 {
-                    DisplayRobot(cursorLeft, 20);
+                    DisplayDog();
+                    DisplayRobot(cursorLeft, 10);
                     Thread.Sleep(400);
-                    ClearMovement(20, WindowSize / 2 - 30);
+                    ClearMovement(10, WindowSize / 2 - 31);
                 }
             }
         }
@@ -147,14 +149,15 @@ namespace TheSyndicate
 
         private void DisplayDog()
         {
-            Render(WindowSize / 2, 30, "      |\\_ /|", Yellow);
-            Render(WindowSize / 2, 31, "      | @ @   Woof!", Yellow);
-            Render(WindowSize / 2, 32, "      |   <> _", Yellow);
-            Render(WindowSize / 2, 33, "      | _ /\\------____((| |))", Yellow);
-            Render(WindowSize / 2, 34, "      |               `--' |", Yellow);
-            Render(WindowSize / 2, 35, " ____ | _       ___ |   | ___.'", Yellow);
-            Render(WindowSize / 2, 36, "/ _/_____/ ____/ _______|", Yellow);
+            Render(WindowSize / 2, 20, "      |\\_ /|", Yellow);
+            Render(WindowSize / 2, 21, "      | @ @   Woof!", Yellow);
+            Render(WindowSize / 2, 22, "      |   <> _", Yellow);
+            Render(WindowSize / 2, 23, "      | _ /\\------____ ((| |))", Yellow);
+            Render(WindowSize / 2, 24, "      |                `--' |", Yellow);
+            Render(WindowSize / 2, 25, " ____ | _       ___ |   |___.'", Yellow);
+            Render(WindowSize / 2, 26, "/ _/_____/ ____/ _______|", Yellow);
         }
+
         private void DisplayToaster()
         {
             Render(WindowSize / 2, 40, "       .-(  )) ))-. ", Blue);
@@ -164,17 +167,6 @@ namespace TheSyndicate
             Render(WindowSize / 2, 44, "      |           |;", Blue);
             Render(WindowSize / 2, 45, " .=== '----_------'", Blue);
             Render(WindowSize / 2, 46, "(______.- (_ =", Blue);
-        }
-        private void ClearDogorToaster()
-        {
-            Render(WindowSize / 2, 20, "                           ");
-            Render(WindowSize / 2, 21, "                           ");
-            Render(WindowSize / 2, 22, "                           ");
-            Render(WindowSize / 2, 23, "                           ");
-            Render(WindowSize / 2, 24, "                           ");
-            Render(WindowSize / 2, 25, "                           ");
-            Render(WindowSize / 2, 26, "                           ");
-
         }
 
         private void ClearMovement(int cursorTopStart, int cursorTopEnd)

@@ -100,7 +100,6 @@ namespace TheSyndicate
 
             int lastSpaceInALine = 0;
 
-
             while (startIndex < text.Length)
             {
 
