@@ -4,7 +4,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-
 namespace TheSyndicate
 {
     class GameEngine
@@ -13,6 +12,7 @@ namespace TheSyndicate
         private Dictionary<string, Scene> Scenes { get; set; }
         private Scene CurrentScene { get; set; }
         private Player Player { get; set; }
+        private Animations Animations = new Animations();
         public static readonly bool Is_Windows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         public GameEngine()
@@ -26,11 +26,9 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            Animations Animations = new Animations();
             Animations.DisplayIntroScene();
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.CursorVisible = true;
-            while (CurrentScene.HasNextScenes())
+            while (CurrentScene.HasNextScenes() && Player.HasBatteryLife())
             {
                 PlayScene();
             }
@@ -125,7 +123,6 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
-            if (!CurrentScene.Start) { Player.UpdateBatteryImage(); }
             CurrentScene.Play();
             CurrentScene = GetNextScene();
         }
@@ -137,6 +134,7 @@ namespace TheSyndicate
 
         private void PlayFinalScene()
         {
+            Console.Clear();
             string firstSceneId = GetFirstScene().Id;
             Player.ResetPlayerData(firstSceneId);
             PlayScene();

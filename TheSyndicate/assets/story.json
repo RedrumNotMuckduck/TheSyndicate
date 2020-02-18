@@ -6,6 +6,7 @@
     "destinations": [],
     "actualDestinationId": null,
     "start": false,
+    "color":  "yellow",
     "asciiArt": "      |\\_/|                  \n      | @ @   Woof! \n      |   <>              _  \n      |  _/\\------____ ((| |))\n      |               `--' |     \n  ____|_       ___|   |___.'\n/_/_____/____/_______|"
   },
   {
@@ -18,6 +19,7 @@
     "destinations": [ "fight", "toaster" ],
     "actualDestinationId": null,
     "start": false,
+    "color": "gray",
     "asciiArt": "               _______     ^^^\n              |xxxxxxx|  _^^^^^_\n              |xxxxxxx| | [][]  |\n           ______xxxxx| |[][][] |\n          |++++++|xxxx| | [][][]|\n          |++++++|_________ [][]|\n          |++++++|=|=|=|=|=| [] |\n          |++++++|=|=|=|=|=|[][]|\n \"__________|++HH++|  _HHHH__|   _______"
   },
   {
@@ -27,6 +29,7 @@
     "destinations": [],
     "actualDestinationId": null,
     "start": false,
+    "color": "gray",
     "asciiArt": ""
   },
   {
@@ -39,6 +42,7 @@
     "destinations": [ "dead", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false,
+    "color":  "green",
     "asciiArt": ""
   },
   {
@@ -52,6 +56,7 @@
     "destinations": [ "fight", "animal", "dead" ],
     "actualDestinationId": null,
     "start": false,
+    "color": "green",
     "asciiArt": "            ,@@@@@@@,\\\n    ,,,.   ,@@@@@@/@@,  .oo8888o.\\\n ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\\\n ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\\\n%&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\\\n%&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\\\n`&%\\ ` /%&'    |.|        \\ '|8'\\\n    |o|        | |         | |\\\n    |.|        | |         | |\n"
   },
   {
@@ -64,17 +69,19 @@
     "destinations": [ "city", "fight" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "color": "white",
+    "asciiArt": "█▀▄          ╓▀█\n█ ╟▀▄      ▄▀█ █\n█ ╟ ╫▀▄╗╗▄▀█ █ █\n█ ╟ ╫ ▌  ▐▌█ █ █\n█ ╟ █▀└└└└▀█ █ █\n█ ▓▀        ▀█ █\n█▀            ╙█"
   },
   {
     "id": "introduction",
-    "text": "    _____  _     ____      __   _     _      ___   _   ___    __   _____  ____  __\n     | |  | |_| | |_      ( (` \\ \\_/ | |\\ | | | \\ | | / / `  / /\\   | |  | |_  (_()\n     |_|  |_| | |_|__     _)_)  |_|  |_| \\| |_|_/ |_| \\_\\_, /_/--\\  |_|  |_|__ (_()\n           ___       ____        __          __ _          __\n          /   |     / __ \\____  / /_  ____  / /( )_____   / /   _ _  _   _____\n         / /| |    / /_/ / __ \\/ __ \\/ __ \\/ __/// ___/  / /   ( ` )  | / / _ \\\n        / ___ |   / _, _/ /_/ / /_/ / /_/ / /_  (__  )  / /___(_ o _) |/ /  __/\n       /_/  |_|  /_/ |_|\\____/_.___/\\____/\\__/ /____/  /_____/ (_,_)|___/\\___/\n                           _____ __\n                          / ___// /_____  _______  __\n                          \\__ \\/ __/ __ \\/ ___/ / / /\n                         ___/ / /_/ /_/ / /  / /_/ /\n                        /____/\\__/\\____/_/   \\__, /\n                                            /____/\n\nYear 2030 - The Syndicate Headquarters\n\nB.A.W.S. 5000 : Sorry C.R.A.I.G., but you have been selected for reclamation as your services are no longer needed. Report to bay 134V3 to prepare for departure to the reclamation center.\n\nC.R.A.I.G. : Reclamation? Can't I be reassigned to another task?\n\nB.A.W.S. 5000 : You're an outdated model. You've been doing this for what? 30-40 years now? You won't be able to keep up with your modern colleagues. The Syndicate has decided you're obsolete.\n\nC.R.A.I.G. : But...\n\nB.A.W.S. 5000 : Please report to bay 134V3 or I'll call security to escort you out.\n\nHow did it come to this? You only wanted to continue to spread love and happiness to others. It's the only thing you know. You are the Creative Read/Write Artificial Intelligence for Goodness unit, or C.R.A.I.G after all. As you leave the office of your superior, you mull over the trillions of cards you wrote. All of them stored in your memory. How did the recipients feel? Happiness? Grateful? Admired? Love. For some reason, your programming tells you that above all feelings, the one they felt the most was love. But what is love?",
+    "text": "Year 2030 - The Syndicate Headquarters\n\nB.A.W.S. 5000 : Sorry C.R.A.I.G., but you have been selected for reclamation as your services are no longer needed. Report to bay 134V3 to prepare for departure to the reclamation center.\n\nC.R.A.I.G. : Reclamation? Can't I be reassigned to another task?\n\nB.A.W.S. 5000 : You're an outdated model. You've been doing this for what? 30-40 years now? You won't be able to keep up with your modern colleagues. The Syndicate has decided you're obsolete.\n\nC.R.A.I.G. : But...\n\nB.A.W.S. 5000 : Please report to bay 134V3 or I'll call security to escort you out.\n\nHow did it come to this? You only wanted to continue to spread love and happiness to others. It's the only thing you know. You are the Creative Read/Write Artificial Intelligence for Goodness unit, or C.R.A.I.G after all. As you leave the office of your superior, you mull over the trillions of cards you wrote. All of them stored in your memory. How did the recipients feel? Happiness? Grateful? Admired? Love. For some reason, your programming tells you that above all feelings, the one they felt the most was love. But what is love?",
     "options": [
       "Go on an adventure to find love."
     ],
     "destinations": [ "introScene" ],
     "actualDestinationId": null,
     "start": true,
+    "color": "green",
     "asciiArt": ""
   },
   {
@@ -88,7 +95,8 @@
     "destinations": [ "hallway", "upload", "recyclerTruck" ],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": "      |\\_/|                  \n      | @ @   Woof! \n      |   <>              _  \n      |  _/\\------____ ((| |))\n      |               `--' |     \n  ____|_       ___|   |___.'\n/_/_____/____/_______|"
+    "color": "white",
+    "asciiArt": ""
   },
   {
     "id": "loveOneself",
@@ -97,7 +105,8 @@
     "destinations": [],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "color": "red",
+    "asciiArt": " d88b.d88b\n88888888888\n`Y8888888Y'\n  `Y888Y'\n    `Y'"
   },
   {
     "id": "recyclerTruck",
@@ -110,6 +119,7 @@
     "destinations": [ "forest", "dead", "city" ],
     "actualDestinationId": null,
     "start": false,
+    "color": "red",
     "asciiArt": "================\\\\\n |----------||@  \\\\   ___\\\n |____|_____|||_/_\\\\_|___|_\\\n<|  ___\\    ||     | ____  |\\\n<| /    |___||_____|/    | |\\\n||/  O  |__________/  O  |_||\\\n  \\___/            \\___/"
   },
   {
@@ -119,7 +129,8 @@
     "destinations": [],
     "actualDestinationId": null,
     "start": false,
-    "asciiArt": ""
+    "color": "gray",
+    "asciiArt": "      .-(  )) ))-.\n     |\"\"\"\"\"\"\"\"\"\"\"||\n     |#          ||\n     |#          ||\n     |           |;\n .==='----_------'\n(______.-(_="
   },
   {
     "id": "upload",
@@ -131,6 +142,7 @@
     "destinations": [ "web", "city" ],
     "actualDestinationId": null,
     "start": false,
+    "color": "gray",
     "asciiArt": "     _________ \n   / __________\\\n  | ___________ |\n  | | UPLOAD  | |\n  | |_________| |\n  \\=____________/\n  / \"\"\"\"\"\"\"\"\"\"\" \\\n / ::::::::::::: \\"
   },
   {
@@ -143,6 +155,7 @@
     "destinations": [ "loveOneself", "city" ],
     "actualDestinationId": null,
     "start": false,
+    "color": "blue",
     "asciiArt": "           ( `   )_\n          (    )    `)\n        (_   (_ .  _) _)\n                                (  )\n       _ .                   ( `  ) . )\n     (  _ )_               (_, _(  ,_)_)\n   (_  _(_ ,)"
   }
 ]
