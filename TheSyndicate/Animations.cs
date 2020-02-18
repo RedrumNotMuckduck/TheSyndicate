@@ -10,6 +10,8 @@ namespace TheSyndicate
     {
         private int WindowSize = 200;
         private ConsoleColor Red = ConsoleColor.Red;
+        private ConsoleColor Yellow = ConsoleColor.Yellow;
+        private ConsoleColor Blue = ConsoleColor.Blue; 
         private Player player = Player.GetInstance();
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
@@ -64,6 +66,47 @@ namespace TheSyndicate
                 }
             }
         }
+        public void DisplayFoundDogEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, Yellow);
+                    break;
+                }
+                else
+                {
+                    DisplayDog();
+                    DisplayRobot(cursorLeft);
+                    Thread.Sleep(400);
+                    ClearMovement();
+                }
+            }
+        }
+
+        public void DisplayFoundToasterEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, Blue);
+                    break;
+                }
+                else
+                {
+                    DisplayToaster(); 
+                    DisplayRobot(cursorLeft);
+                    Thread.Sleep(400);
+                    ClearMovement();
+                }
+            }
+        }
 
         private void DisplayHeart()
         {
@@ -83,6 +126,38 @@ namespace TheSyndicate
             Render(this.WindowSize / 2, 19, "           ");
         }
 
+        private void DisplayDog()
+        {
+            Render(this.WindowSize / 2, 20, "      |\\_ /|", Yellow);
+            Render(this.WindowSize / 2, 21, "      | @ @   Woof!", Yellow);
+            Render(this.WindowSize / 2, 22, "      |   <> _", Yellow);
+            Render(this.WindowSize / 2, 23, "      | _ /\\------____((| |))", Yellow);
+            Render(this.WindowSize / 2, 24, "      |               `--' |", Yellow);
+            Render(this.WindowSize / 2, 25, " ____ | _       ___ |   | ___.'", Yellow);
+            Render(this.WindowSize / 2, 26, "/ _/_____/ ____/ _______|", Yellow);
+        }
+
+        private void DisplayToaster()
+        {
+            Render(this.WindowSize / 2, 20, ".-(  )) ))-. ", Blue);
+            Render(this.WindowSize / 2, 21, " |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
+            Render(this.WindowSize / 2, 22, " |#          ||", Blue);
+            Render(this.WindowSize / 2, 23, " |#          ||", Blue);
+            Render(this.WindowSize / 2, 24, " |           |;", Blue);
+            Render(this.WindowSize / 2, 25, ".=== '----_------'", Blue);
+            Render(this.WindowSize / 2, 26, "(______.- (_ =", Blue);
+        }
+
+        private void ClearDogorToaster()
+        {
+            Render(this.WindowSize / 2, 20, "                           ");
+            Render(this.WindowSize / 2, 21, "                           ");
+            Render(this.WindowSize / 2, 22, "                           ");
+            Render(this.WindowSize / 2, 23, "                           ");
+            Render(this.WindowSize / 2, 24, "                           ");
+            Render(this.WindowSize / 2, 25, "                           ");
+            Render(this.WindowSize / 2, 26, "                           ");
+        }
         private void ClearMovement()
         {
             //Iterate through Window size - 5 to avoid out of bound exception
