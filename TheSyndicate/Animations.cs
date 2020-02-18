@@ -14,6 +14,7 @@ namespace TheSyndicate
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
         {
+            Console.CursorVisible = false;
             Console.ForegroundColor = displayColor;
             Console.CursorLeft = cursorLeft;
             Console.CursorTop = cursorTop;
@@ -57,7 +58,7 @@ namespace TheSyndicate
         public void DisplayDeadEnding()
         {
             player.SetBatteryToFullPower();
-            int MAX_BATTERY_POWER = 4;
+            int MAX_BATTERY_POWER = 5;
             for (int i = 0; i < MAX_BATTERY_POWER; i++)
             {
                 player.UpdateBatteryImage();
@@ -109,7 +110,6 @@ namespace TheSyndicate
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft += 5)
             {
-                DisplayDog();
                 //The dog is 31px wide, so we subtract 31 so that the robot turns yellow when the dog is overlapped
                 if (cursorLeft > WindowSize / 2 - 31)
                 {
@@ -118,9 +118,10 @@ namespace TheSyndicate
                 }
                 else
                 {
+                    DisplayDog();
                     DisplayRobot(cursorLeft, 10);
                     Thread.Sleep(400);
-                    ClearMovement(10, WindowSize / 2 - 30);
+                    ClearMovement(10, WindowSize / 2 - 31);
                 }
             }
         }
