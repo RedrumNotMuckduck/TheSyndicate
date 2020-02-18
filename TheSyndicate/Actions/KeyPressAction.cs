@@ -55,6 +55,7 @@ namespace TheSyndicate.Actions
         // https://stackoverflow.com/questions/5945533/how-to-execute-the-loop-for-specific-time
         private void HaveUserAlternatePressingSpacebarAndTab()
         {
+            FightAction.CountdownToFight();
             Console.Clear();
             Console.SetCursorPosition(Console.WindowWidth/2 - 4, Console.WindowHeight/2);
             Console.WriteLine("START!!!");

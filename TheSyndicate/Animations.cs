@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using System.Runtime.InteropServices;
 
 namespace TheSyndicate
 {
     public class Animations
     {
-        private int WindowSize = 200;
+        private static int WindowSize = 180;
         private ConsoleColor Red = ConsoleColor.Red;
         private ConsoleColor Yellow = ConsoleColor.Yellow;
         private ConsoleColor Blue = ConsoleColor.Blue; 
+      
         private Player player = Player.GetInstance();
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
@@ -27,42 +25,56 @@ namespace TheSyndicate
         {
             DisplayGameTitle();
             DisplayGameMessage(); 
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
-                DisplayRobot(cursorLeft);
-                Thread.Sleep(200);
-                ClearMovement();
+                DisplayRobot(cursorLeft, 10);
+                Thread.Sleep(400);
+                ClearMovement(10,29);
+            }
+        }
+
+        public void DisplayUniqueEnding(string sceneID)
+        {
+            switch (sceneID)
+            {
+                case "loveOneself":
+                    DisplayLoveYourselfEnding();
+                    break;
+                default:
+                    DisplayDeadEnding();
+                    break;
             }
         }
 
         public void DisplayDeadEnding()
         {
             player.SetBatteryToFullPower();
-            for (int i = 0; i < player.BatteryPower; i++)
+            int MAX_BATTERY_POWER = 5;
+            for (int i = 0; i < MAX_BATTERY_POWER; i++)
             {
                 player.UpdateBatteryImage();
-                Thread.Sleep(300);
+                Thread.Sleep(400);
                 player.DecrementBatteryPowerByOne();
             }
         }
 
         public void DisplayLoveYourselfEnding()
         {
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
                 //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
-                if (cursorLeft > this.WindowSize / 2 - 11)
+                if (cursorLeft > WindowSize / 2 - 11)
                 {
                     ClearHeart();
-                    DisplayRobot(cursorLeft, Red);
+                    DisplayRobot(cursorLeft, 20, Red);
                     break;
                 }
                 else
                 {
                     DisplayHeart();
-                    DisplayRobot(cursorLeft);
+                    DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
-                    ClearMovement();
+                    ClearMovement(20, WindowSize / 2);
                 }
             }
         }
@@ -74,15 +86,15 @@ namespace TheSyndicate
                 if (cursorLeft > this.WindowSize / 2 - 11)
                 {
                     ClearDogorToaster();
-                    DisplayRobot(cursorLeft, Yellow);
+                    DisplayRobot(cursorLeft, 20, Yellow);
                     break;
                 }
                 else
                 {
                     DisplayDog();
-                    DisplayRobot(cursorLeft);
+                    DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
-                    ClearMovement();
+                    ClearMovement(cursorLeft, 20);
                 }
             }
         }
@@ -95,46 +107,46 @@ namespace TheSyndicate
                 if (cursorLeft > this.WindowSize / 2 - 11)
                 {
                     ClearDogorToaster();
-                    DisplayRobot(cursorLeft, Blue);
+                    DisplayRobot(cursorLeft, 20, Blue);
                     break;
                 }
                 else
                 {
                     DisplayToaster(); 
-                    DisplayRobot(cursorLeft);
+                    DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
-                    ClearMovement();
+                    ClearMovement(cursorLeft, 20);
                 }
             }
         }
 
         private void DisplayHeart()
         {
-            Render(this.WindowSize / 2, 15, ",d88b.d88b,", Red);
-            Render(this.WindowSize / 2, 16, "88888888888", Red);
-            Render(this.WindowSize / 2, 17, "`Y8888888Y'", Red);
-            Render(this.WindowSize / 2, 18, "  `Y888Y'", Red);
-            Render(this.WindowSize / 2, 19, "    `Y'", Red);
+            Render(WindowSize / 2, 25, ",d88b.d88b,", Red);
+            Render(WindowSize / 2, 26, "88888888888", Red);
+            Render(WindowSize / 2, 27, "`Y8888888Y'", Red);
+            Render(WindowSize / 2, 28, "  `Y888Y'", Red);
+            Render(WindowSize / 2, 29, "    `Y'", Red);
         }
 
         private void ClearHeart()
         {
-            Render(this.WindowSize / 2, 15, "           ");
-            Render(this.WindowSize / 2, 16, "           ");
-            Render(this.WindowSize / 2, 17, "           ");
-            Render(this.WindowSize / 2, 18, "           ");
-            Render(this.WindowSize / 2, 19, "           ");
+            Render(WindowSize / 2, 25, "           ");
+            Render(WindowSize / 2, 26, "           ");
+            Render(WindowSize / 2, 27, "           ");
+            Render(WindowSize / 2, 28, "           ");
+            Render(WindowSize / 2, 29, "           ");
         }
 
         private void DisplayDog()
         {
-            Render(this.WindowSize / 2, 20, "      |\\_ /|", Yellow);
-            Render(this.WindowSize / 2, 21, "      | @ @   Woof!", Yellow);
-            Render(this.WindowSize / 2, 22, "      |   <> _", Yellow);
-            Render(this.WindowSize / 2, 23, "      | _ /\\------____((| |))", Yellow);
-            Render(this.WindowSize / 2, 24, "      |               `--' |", Yellow);
-            Render(this.WindowSize / 2, 25, " ____ | _       ___ |   | ___.'", Yellow);
-            Render(this.WindowSize / 2, 26, "/ _/_____/ ____/ _______|", Yellow);
+            Render(this.WindowSize / 2, 40, "      |\\_ /|", Yellow);
+            Render(this.WindowSize / 2, 41, "      | @ @   Woof!", Yellow);
+            Render(this.WindowSize / 2, 42, "      |   <> _", Yellow);
+            Render(this.WindowSize / 2, 43, "      | _ /\\------____((| |))", Yellow);
+            Render(this.WindowSize / 2, 44, "      |               `--' |", Yellow);
+            Render(this.WindowSize / 2, 45, " ____ | _       ___ |   | ___.'", Yellow);
+            Render(this.WindowSize / 2, 46, "/ _/_____/ ____/ _______|", Yellow);
         }
 
         private void DisplayToaster()
@@ -150,76 +162,62 @@ namespace TheSyndicate
 
         private void ClearDogorToaster()
         {
-            Render(this.WindowSize / 2, 20, "                           ");
-            Render(this.WindowSize / 2, 21, "                           ");
-            Render(this.WindowSize / 2, 22, "                           ");
-            Render(this.WindowSize / 2, 23, "                           ");
-            Render(this.WindowSize / 2, 24, "                           ");
-            Render(this.WindowSize / 2, 25, "                           ");
-            Render(this.WindowSize / 2, 26, "                           ");
+            Render(this.WindowSize / 2, 40, "                           ");
+            Render(this.WindowSize / 2, 41, "                           ");
+            Render(this.WindowSize / 2, 42, "                           ");
+            Render(this.WindowSize / 2, 43, "                           ");
+            Render(this.WindowSize / 2, 44, "                           ");
+            Render(this.WindowSize / 2, 45, "                           ");
+            Render(this.WindowSize / 2, 46, "                           ");
         }
-        private void ClearMovement()
+
+        private void ClearMovement(int cursorTopStart, int cursorTopEnd)
         {
             //Iterate through Window size - 5 to avoid out of bound exception
-            for (int cursorLeft = 0; cursorLeft < this.WindowSize - 5; cursorLeft+=5)
+            for (int cursorLeft = 0; cursorLeft < WindowSize - 5; cursorLeft+=5)
             {
-                Render(cursorLeft, 10, "      ");
-                Render(cursorLeft, 11, "      ");
-                Render(cursorLeft, 12, "      ");
-                Render(cursorLeft, 13, "      ");
-                Render(cursorLeft, 14, "      ");
-                Render(cursorLeft, 15, "      ");
-                Render(cursorLeft, 16, "      ");
-                Render(cursorLeft, 17, "      ");
-                Render(cursorLeft, 18, "      ");
-                Render(cursorLeft, 19, "      ");
-                Render(cursorLeft, 20, "      ");
-                Render(cursorLeft, 21, "      ");
-                Render(cursorLeft, 22, "      ");
-                Render(cursorLeft, 23, "      ");
-                Render(cursorLeft, 24, "      ");
-                Render(cursorLeft, 25, "      ");
-                Render(cursorLeft, 26, "      ");
-                Render(cursorLeft, 27, "      ");
-                Render(cursorLeft, 28, "      ");
+                for (int cursorTop = cursorTopStart; cursorTop < cursorTopEnd; cursorTop++)
+                {
+                    Render(cursorLeft, cursorTop, "      ");
+                }
             }
         }
 
         private void DisplayGameTitle()
         {
-            Render(this.WindowSize / 3, 35, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐");
-            Render(this.WindowSize / 3, 36, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ");
-            Render(this.WindowSize / 3, 37, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘");
+            Render(WindowSize / 3, 35, "╔╦╗┬ ┬┌─┐  ┌─┐┬ ┬┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┌─┐");
+            Render(WindowSize / 3, 36, " ║ ├─┤├┤   └─┐└┬┘│││ ││││  ├─┤ │ ├┤ ");
+            Render(WindowSize / 3, 37, " ╩ ┴ ┴└─┘  └─┘ ┴ ┘└┘─┴┘┴└─┘┴ ┴ ┴ └─┘");
         }
 
         private void DisplayGameMessage()
         {
-            Render(this.WindowSize / 2, 40, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬");
-            Render(this.WindowSize / 2, 41, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘");
-            Render(this.WindowSize / 2, 42, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ "); 
+            Render(WindowSize / 2, 40, "╔═╗  ╦═╗┌─┐┌┐ ┌─┐┌┬┐┌─┐  ╦  ┌─┐┬  ┬┌─┐  ╔═╗┌┬┐┌─┐┬─┐┬ ┬");
+            Render(WindowSize / 2, 41, "╠═╣  ╠╦╝│ │├┴┐│ │ │ └─┐  ║  │ │└┐┌┘├┤   ╚═╗ │ │ │├┬┘└┬┘");
+            Render(WindowSize / 2, 42, "╩ ╩  ╩╚═└─┘└─┘└─┘ ┴ └─┘  ╩═╝└─┘ └┘ └─┘  ╚═╝ ┴ └─┘┴└─ ┴ "); 
         }
 
-        private void DisplayRobot(int cursorLeft, ConsoleColor color = ConsoleColor.White)
+        private void DisplayRobot(int cursorLeft, int cursorTop, ConsoleColor color = ConsoleColor.White)
         {
-            Render(cursorLeft, 10, "             _____", color);
-            Render(cursorLeft, 11, "            /_____\\", color);
-            Render(cursorLeft, 12, "       ____[\\`---'/]____", color);
-            Render(cursorLeft, 13, "      /\\ #\\ \\_____/ /# /\\", color);
-            Render(cursorLeft, 14, "     /  \\# \\_.---._/ #/  \\", color);
-            Render(cursorLeft, 15, "    /   /|\\  |   |  /|\\   \\", color);
-            Render(cursorLeft, 16, "   /___/ | | |   | | | \\___\\", color);
-            Render(cursorLeft, 17, "   |  |  | | |---| | |  |  |", color);
-            Render(cursorLeft, 18, "   |__|  \\_| |_#_| |_/  |__|", color);
-            Render(cursorLeft, 19, "   //\\\\  <\\ _//^\\\\_ />  //\\\\", color);
-            Render(cursorLeft, 20, "   \\||/  |\\//// \\\\\\\\/|  \\||/", color);
-            Render(cursorLeft, 21, "         |   |   |   |", color);
-            Render(cursorLeft, 22, "         |---|   |---|", color);
-            Render(cursorLeft, 23, "         |---|   |---|", color);
-            Render(cursorLeft, 24, "         |   |   |   |", color);
-            Render(cursorLeft, 25, "         |___|   |___|", color);
-            Render(cursorLeft, 26, "         /   \\   /   \\", color);
-            Render(cursorLeft, 27, "        |_____| |_____|", color);
-            Render(cursorLeft, 28, "        |HHHHH| |HHHHH|", color);
+            Render(cursorLeft, cursorTop, "             _____", color);
+            Render(cursorLeft, cursorTop + 1, "            /_____\\", color);
+            Render(cursorLeft, cursorTop + 2, "       ____[\\`---'/]____", color);
+            Render(cursorLeft, cursorTop + 3, "      /\\ #\\ \\_____/ /# /\\", color);
+            Render(cursorLeft, cursorTop + 4, "     /  \\# \\_.---._/ #/  \\", color);
+            Render(cursorLeft, cursorTop + 5, "    /   /|\\  |   |  /|\\   \\", color);
+            Render(cursorLeft, cursorTop + 6, "   /___/ | | |   | | | \\___\\", color);
+            Render(cursorLeft, cursorTop + 7, "   |  |  | | |---| | |  |  |", color);
+            Render(cursorLeft, cursorTop + 8, "   |__|  \\_| |_#_| |_/  |__|", color);
+            Render(cursorLeft, cursorTop + 9, "   //\\\\  <\\ _//^\\\\_ />  //\\\\", color);
+            Render(cursorLeft, cursorTop + 10, "   \\||/  |\\//// \\\\\\\\/|  \\||/", color);
+            Render(cursorLeft, cursorTop + 11, "         |   |   |   |", color);
+            Render(cursorLeft, cursorTop + 12, "         |---|   |---|", color);
+            Render(cursorLeft, cursorTop + 13, "         |---|   |---|", color);
+            Render(cursorLeft, cursorTop + 14, "         |   |   |   |", color);
+            Render(cursorLeft, cursorTop + 15, "         |___|   |___|", color);
+            Render(cursorLeft, cursorTop + 16, "         /   \\   /   \\", color);
+            Render(cursorLeft, cursorTop + 17, "        |_____| |_____|", color);
+            Render(cursorLeft, cursorTop + 18, "        |HHHHH| |HHHHH|", color);
         }
     }
 }

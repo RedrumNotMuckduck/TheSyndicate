@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace TheSyndicate.Actions
@@ -61,7 +59,7 @@ namespace TheSyndicate.Actions
             }
         }
 
-        private void CountdownToFight()
+        public static void CountdownToFight()
         {
             Console.Clear();
             FlashCountdown(AsciiArt.ThreeAscii);
@@ -151,12 +149,12 @@ namespace TheSyndicate.Actions
             }
         }
 
-        private void FlashCountdown(string[] art)
+        public static void FlashCountdown(string[] art)
         {
             for (int i = 0; i < art.Length; i++)
             {
                 // Centers the image 
-                Console.SetCursorPosition(Console.WindowWidth / 3, Console.WindowHeight / 5 + i);
+                Console.SetCursorPosition(Console.WindowWidth / 3 + 5, Console.WindowHeight / 3 + i);
                 Console.WriteLine(art[i]);
             }
 
