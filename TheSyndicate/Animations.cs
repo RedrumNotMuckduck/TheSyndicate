@@ -9,6 +9,7 @@ namespace TheSyndicate
         private static ConsoleColor Red = ConsoleColor.Red;
         private ConsoleColor Yellow = ConsoleColor.Yellow;
         private ConsoleColor Blue = ConsoleColor.Blue;
+
         private Player player = Player.GetInstance();
 
         private static void Render(int cursorLeft, int cursorTop, string content, ConsoleColor displayColor = ConsoleColor.White)
@@ -80,6 +81,47 @@ namespace TheSyndicate
                     DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
                     ClearMovement(20, WindowSize / 2);
+                }
+            }
+        }
+        public void DisplayFoundDogEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, 20, Yellow);
+                    break;
+                }
+                else
+                {
+                    DisplayDog();
+                    DisplayRobot(cursorLeft, 20);
+                    Thread.Sleep(400);
+                    ClearMovement(cursorLeft, 20);
+                }
+            }
+        }
+
+        public void DisplayFoundToasterEnding()
+        {
+            for (int cursorLeft = 0; cursorLeft < this.WindowSize; cursorLeft += 5)
+            {
+                //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
+                if (cursorLeft > this.WindowSize / 2 - 11)
+                {
+                    ClearDogorToaster();
+                    DisplayRobot(cursorLeft, 20, Blue);
+                    break;
+                }
+                else
+                {
+                    DisplayToaster(); 
+                    DisplayRobot(cursorLeft, 20);
+                    Thread.Sleep(400);
+                    ClearMovement(cursorLeft, 20);
                 }
             }
         }
@@ -173,6 +215,7 @@ namespace TheSyndicate
             Render(WindowSize / 2, 24, "                           ");
             Render(WindowSize / 2, 25, "                           ");
             Render(WindowSize / 2, 26, "                           ");
+
         }
 
         private void ClearMovement(int cursorTopStart, int cursorTopEnd)
