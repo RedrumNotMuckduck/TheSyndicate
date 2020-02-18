@@ -55,7 +55,7 @@ namespace TheSyndicate
         public void DisplayDeadEnding()
         {
             player.SetBatteryToFullPower();
-            int MAX_BATTERY_POWER = 4;
+            int MAX_BATTERY_POWER = 5;
             for (int i = 0; i < MAX_BATTERY_POWER; i++)
             {
                 player.UpdateBatteryImage();
@@ -68,39 +68,39 @@ namespace TheSyndicate
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
-                DisplayHeart();
                 //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
                 if (cursorLeft > WindowSize / 2 - 11)
                 {
                     ClearHeart();
-                    DisplayRobot(cursorLeft, 20, Red);
+                    DisplayRobot(cursorLeft, 30, Red);
                     break;
                 }
                 else
                 {
-                    DisplayRobot(cursorLeft, 20);
+                    DisplayHeart();
+                    DisplayRobot(cursorLeft, 30);
                     Thread.Sleep(400);
-                    ClearMovement(20, WindowSize / 2);
+                    ClearMovement(30, WindowSize / 2 - 11 );
                 }
             }
         }
 
         private void DisplayHeart()
         {
-            Render(WindowSize / 2, 25, ",d88b.d88b,", Red);
-            Render(WindowSize / 2, 26, "88888888888", Red);
-            Render(WindowSize / 2, 27, "`Y8888888Y'", Red);
-            Render(WindowSize / 2, 28, "  `Y888Y'", Red);
-            Render(WindowSize / 2, 29, "    `Y'", Red);
+            Render(WindowSize / 2, 35, ",d88b.d88b,", Red);
+            Render(WindowSize / 2, 36, "88888888888", Red);
+            Render(WindowSize / 2, 37, "`Y8888888Y'", Red);
+            Render(WindowSize / 2, 38, "  `Y888Y'", Red);
+            Render(WindowSize / 2, 39, "    `Y'", Red);
         }
 
         private void ClearHeart()
         {
-            Render(WindowSize / 2, 25, "           ");
-            Render(WindowSize / 2, 26, "           ");
-            Render(WindowSize / 2, 27, "           ");
-            Render(WindowSize / 2, 28, "           ");
-            Render(WindowSize / 2, 29, "           ");
+            Render(WindowSize / 2, 35, "           ");
+            Render(WindowSize / 2, 36, "           ");
+            Render(WindowSize / 2, 37, "           ");
+            Render(WindowSize / 2, 38, "           ");
+            Render(WindowSize / 2, 39, "           ");
         }
 
         public void DisplayFoundDogEnding()
@@ -126,19 +126,19 @@ namespace TheSyndicate
 
         public void DisplayFoundToasterEnding()
         {
-            DisplayToaster();
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft += 5)
             {
                 //The toaster is 30px wide, so we subtract 30 so that the robot turns blue when the toaster is overlapped
                 if (cursorLeft > WindowSize / 2 - 30)
                 {
-                    ClearDogorToaster();
-                    DisplayRobot(cursorLeft, 20, Blue);
+                    DisplayToaster();
+                    DisplayRobot(cursorLeft, 30, Blue);
                     break;
                 }
                 else
                 {
-                    DisplayRobot(cursorLeft, 20);
+                    DisplayToaster();
+                    DisplayRobot(cursorLeft, 30);
                     Thread.Sleep(400);
                     ClearMovement(20, WindowSize / 2 - 30);
                 }
@@ -157,13 +157,13 @@ namespace TheSyndicate
         }
         private void DisplayToaster()
         {
-            Render(WindowSize / 2, 20, ".-(  )) ))-. ", Blue);
-            Render(WindowSize / 2, 21, " |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
-            Render(WindowSize / 2, 22, " |#          ||", Blue);
-            Render(WindowSize / 2, 23, " |#          ||", Blue);
-            Render(WindowSize / 2, 24, " |           |;", Blue);
-            Render(WindowSize / 2, 25, ".=== '----_------'", Blue);
-            Render(WindowSize / 2, 26, "(______.- (_ =", Blue);
+            Render(WindowSize / 2, 40, "       .-(  )) ))-. ", Blue);
+            Render(WindowSize / 2, 41, "      |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
+            Render(WindowSize / 2, 42, "      |#          ||", Blue);
+            Render(WindowSize / 2, 43, "      |#          ||", Blue);
+            Render(WindowSize / 2, 44, "      |           |;", Blue);
+            Render(WindowSize / 2, 45, " .=== '----_------'", Blue);
+            Render(WindowSize / 2, 46, "(______.- (_ =", Blue);
         }
         private void ClearDogorToaster()
         {

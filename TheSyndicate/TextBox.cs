@@ -98,13 +98,14 @@ namespace TheSyndicate
             int textStartX = TextBufferX + TextBoxX;
             int textStartY = TextBufferY + TextBoxY;
 
-            int lastSpaceInALine;
+            int lastSpaceInALine = 0;
 
 
             while (startIndex < text.Length)
             {
-                lastSpaceInALine = CheckForLastSpaceInALine(lineWidth, endIndex);
 
+                lastSpaceInALine = CheckForLastSpaceInALine(lineWidth, endIndex);
+ 
                 newLineIndex = NEW_LINE_PATTERN.Match(text, startIndex, endIndex - startIndex).Index;
 
                 //checks if \n appears before maximum lineWidth, if so, then renders up to \n and continues to next line
