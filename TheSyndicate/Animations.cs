@@ -68,7 +68,6 @@ namespace TheSyndicate
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
             {
-                DisplayHeart();
                 //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
                 if (cursorLeft > WindowSize / 2 - 11)
                 {
@@ -78,6 +77,7 @@ namespace TheSyndicate
                 }
                 else
                 {
+                    DisplayHeart();
                     DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
                     ClearMovement(20, WindowSize / 2);
@@ -107,7 +107,6 @@ namespace TheSyndicate
         {
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft += 5)
             {
-                DisplayDog();
                 //The dog is 30px wide, so we subtract 30 so that the robot turns yellow when the dog is overlapped
                 if (cursorLeft > WindowSize / 2 - 30)
                 {
@@ -117,6 +116,7 @@ namespace TheSyndicate
                 }
                 else
                 {
+                    DisplayDog();
                     DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
                     ClearMovement(20, WindowSize / 2 - 30);
@@ -126,7 +126,6 @@ namespace TheSyndicate
 
         public void DisplayFoundToasterEnding()
         {
-            DisplayToaster();
             for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft += 5)
             {
                 //The toaster is 30px wide, so we subtract 30 so that the robot turns blue when the toaster is overlapped
@@ -138,6 +137,7 @@ namespace TheSyndicate
                 }
                 else
                 {
+                    DisplayToaster();
                     DisplayRobot(cursorLeft, 20);
                     Thread.Sleep(400);
                     ClearMovement(20, WindowSize / 2 - 30);

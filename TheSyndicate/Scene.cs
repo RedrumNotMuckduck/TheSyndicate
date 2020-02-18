@@ -143,15 +143,24 @@ namespace TheSyndicate
 
         private int GetValidUserInput(TextBox sceneTextBox)
         {
+            bool isNumber = false;
             int userInput;
             do
             {
                 sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY + 2);
-                Int32.TryParse(Console.ReadLine(), out userInput);
+                isNumber = Int32.TryParse(Console.ReadLine(), out userInput);
+                ClearLine();
             }
-            while (!IsValidInput(userInput));
+            while (!IsValidInput(userInput) || !isNumber);
 
             return userInput;
+        }
+
+        public void ClearLine() //Remove the last writen line
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - (Console.WindowWidth >= Console.BufferWidth ? 1 : 0));
         }
 
         public bool IsValidInput(int userInput)

@@ -26,7 +26,7 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            Animations.DisplayIntroScene();
+            //Animations.DisplayIntroScene();
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes() && Player.HasBatteryLife())
             {
