@@ -80,36 +80,26 @@ namespace TheSyndicate
                 //The heart is 11px wide, so we subtract 11 so that the robot turns red when the heart is overlapped
                 if (cursorLeft > WindowSize / 2 - 11)
                 {
-                    ClearHeart();
-                    DisplayRobot(cursorLeft, 30, Red);
+                    DisplayRobot(cursorLeft, 10, Red);
                     break;
                 }
                 else
                 {
                     DisplayHeart();
-                    DisplayRobot(cursorLeft, 30);
+                    DisplayRobot(cursorLeft, 10);
                     Thread.Sleep(400);
-                    ClearMovement(30, WindowSize / 2 - 11 );
+                    ClearMovement(10, WindowSize / 2 - 11 );
                 }
             }
         }
 
         private void DisplayHeart()
         {
-            Render(WindowSize / 2, 35, ",d88b.d88b,", Red);
-            Render(WindowSize / 2, 36, "88888888888", Red);
-            Render(WindowSize / 2, 37, "`Y8888888Y'", Red);
-            Render(WindowSize / 2, 38, "  `Y888Y'", Red);
-            Render(WindowSize / 2, 39, "    `Y'", Red);
-        }
-
-        private void ClearHeart()
-        {
-            Render(WindowSize / 2, 35, "           ");
-            Render(WindowSize / 2, 36, "           ");
-            Render(WindowSize / 2, 37, "           ");
-            Render(WindowSize / 2, 38, "           ");
-            Render(WindowSize / 2, 39, "           ");
+            Render(WindowSize / 2, 15, ",d88b.d88b,", Red);
+            Render(WindowSize / 2, 16, "88888888888", Red);
+            Render(WindowSize / 2, 17, "`Y8888888Y'", Red);
+            Render(WindowSize / 2, 18, "  `Y888Y'", Red);
+            Render(WindowSize / 2, 19, "    `Y'", Red);
         }
 
         public void DisplayFoundDogEnding()
@@ -119,6 +109,7 @@ namespace TheSyndicate
                 //The dog is 31px wide, so we subtract 31 so that the robot turns yellow when the dog is overlapped
                 if (cursorLeft > WindowSize / 2 - 31)
                 {
+                    DisplayDog(); 
                     DisplayRobot(cursorLeft, 10, Yellow);
                     break;
                 }
@@ -140,15 +131,15 @@ namespace TheSyndicate
                 if (cursorLeft > WindowSize / 2 - 30)
                 {
                     DisplayToaster();
-                    DisplayRobot(cursorLeft, 30, Blue);
+                    DisplayRobot(cursorLeft, 10, Blue);
                     break;
                 }
                 else
                 {
                     DisplayToaster();
-                    DisplayRobot(cursorLeft, 30);
+                    DisplayRobot(cursorLeft, 10);
                     Thread.Sleep(400);
-                    ClearMovement(20, WindowSize / 2 - 30);
+                    ClearMovement(10, WindowSize / 2 - 30);
                 }
             }
         }
@@ -166,13 +157,13 @@ namespace TheSyndicate
 
         private void DisplayToaster()
         {
-            Render(WindowSize / 2, 40, "       .-(  )) ))-. ", Blue);
-            Render(WindowSize / 2, 41, "      |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
-            Render(WindowSize / 2, 42, "      |#          ||", Blue);
-            Render(WindowSize / 2, 43, "      |#          ||", Blue);
-            Render(WindowSize / 2, 44, "      |           |;", Blue);
-            Render(WindowSize / 2, 45, " .=== '----_------'", Blue);
-            Render(WindowSize / 2, 46, "(______.- (_ =", Blue);
+            Render(WindowSize / 2, 20, "       .-(  )) ))-. ", Blue);
+            Render(WindowSize / 2, 21, "      |\"\"\"\"\"\"\"\"\"\"\\||", Blue);
+            Render(WindowSize / 2, 22, "      |#          ||", Blue);
+            Render(WindowSize / 2, 23, "      |#          ||", Blue);
+            Render(WindowSize / 2, 24, "      |           |;", Blue);
+            Render(WindowSize / 2, 25, " .=== '----_------'", Blue);
+            Render(WindowSize / 2, 26, "(______.- (_ =", Blue);
         }
 
         private void ClearMovement(int cursorTopStart, int cursorTopEnd)
