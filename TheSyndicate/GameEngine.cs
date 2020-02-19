@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using Newtonsoft.Json;
+using TheSyndicate.SoundEffects;
 
 namespace TheSyndicate
 {
@@ -56,8 +58,8 @@ namespace TheSyndicate
         {
             List<Scene> scenes = ConvertStoryFromJsonToScenes();
             Dictionary<string, Scene> sceneIdsToScene = new Dictionary<string, Scene>();
-            
-            foreach(Scene scene in scenes)
+
+            foreach (Scene scene in scenes)
             {
                 sceneIdsToScene[scene.Id] = scene;
             }
@@ -123,6 +125,7 @@ namespace TheSyndicate
         private void PlayScene()
         {
             Console.Clear();
+            if (Is_Windows) { PlaySoundEffect(); }
             CurrentScene.Play();
             if (CurrentScene.ActualDestinationId != null)
             {
@@ -133,6 +136,17 @@ namespace TheSyndicate
         private Scene GetNextScene()
         {
             return this.Scenes[CurrentScene.ActualDestinationId];
+        }
+
+        private void PlaySoundEffect()
+        {
+            // Sound Effects from SoundBible & Zapsplat 
+            if (this.CurrentScene.Id == "animal") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectBark.mp3"); }
+            else if (this.CurrentScene.Id == "dead") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectPowerDown.mp3"); }
+            else if (this.CurrentScene.Id == "fight") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectFight.mp3"); }
+            else if (this.CurrentScene.Id == "forest") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectNature.mp3"); }
+            else if (this.CurrentScene.Id == "web") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectUpload.mp3"); }
+            else if (this.CurrentScene.Id == "recyclerTruck") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectRecycler.mp3"); }
         }
 
         private void PlayFinalScene()
