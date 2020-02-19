@@ -9,6 +9,7 @@ namespace TheSyndicate
         {
             while (Scene.NewGame)
             {
+                Console.Clear(); 
                 GameEngine gameEngine = new GameEngine();
                 gameEngine.Start();
             }
