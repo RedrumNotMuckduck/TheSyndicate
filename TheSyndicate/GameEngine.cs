@@ -26,7 +26,7 @@ namespace TheSyndicate
         public void Start()
         {
             ConsoleWindow.MaximizeWindow();
-            //Animations.DisplayIntroScene();
+            Animations.DisplayIntroScene();
             Console.CursorVisible = true;
             while (CurrentScene.HasNextScenes() && Player.HasBatteryLife())
             {
@@ -124,7 +124,10 @@ namespace TheSyndicate
         {
             Console.Clear();
             CurrentScene.Play();
-            CurrentScene = GetNextScene();
+            if (CurrentScene.ActualDestinationId != null)
+            {
+                CurrentScene = GetNextScene();
+            }
         }
 
         private Scene GetNextScene()
@@ -139,5 +142,6 @@ namespace TheSyndicate
             Player.ResetPlayerData(firstSceneId);
             PlayScene();
         }
+
     }
 }

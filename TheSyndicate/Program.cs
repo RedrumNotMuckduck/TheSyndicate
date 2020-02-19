@@ -7,8 +7,11 @@ namespace TheSyndicate
     {
         static void Main(string[] args)
         {
-            GameEngine gameEngine = new GameEngine();
-            gameEngine.Start();
+            while (Scene.NewGame)
+            {
+                GameEngine gameEngine = new GameEngine();
+                gameEngine.Start();
+            }
         }
     }
 }

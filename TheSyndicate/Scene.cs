@@ -19,7 +19,7 @@ namespace TheSyndicate
         public ConsoleColor Color { get; private set; }
         public Dictionary<string, ConsoleColor> AllColors { get; set; }
         public IAction Action { get; set; }
-
+        public static bool NewGame = true; 
         public Scene(string id, string text, string[] options, string[] destinations, bool start, string asciiArt, string color)
         {
             this.AllColors = LoadColors();
@@ -122,9 +122,13 @@ namespace TheSyndicate
         {
             sceneTextBox.TextBoxY += 2;
             sceneTextBox.SetBoxPosition(sceneTextBox.TextBoxX, sceneTextBox.TextBoxY);
-            Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end.");
+            Console.WriteLine("You have reached the end of your journey. Press CTRL + C to end or ENTER to replay.");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.ReadKey();
+            ConsoleKey userInput = Console.ReadKey(true).Key;
+            if (userInput != ConsoleKey.Enter)
+            {
+                NewGame = false; 
+            }
         }
 
         private void ExecutePlayerOption(TextBox sceneTextBox)
