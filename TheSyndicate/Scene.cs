@@ -192,6 +192,8 @@ namespace TheSyndicate
                     player.DecrementBatteryPowerByOne();
                 }
             }
+            //After each fight - check if the player still has battery power. If they dont - end the game
+            if (!player.HasBatteryLife()) { this.ActualDestinationId = "dead"; }
         }
 
         public bool HasNextScenes()
