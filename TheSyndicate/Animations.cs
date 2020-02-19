@@ -25,13 +25,15 @@ namespace TheSyndicate
         public void DisplayIntroScene()
         {
             DisplayGameTitle();
-            DisplayGameMessage(); 
-            for (int cursorLeft = 0; cursorLeft < WindowSize; cursorLeft+=5)
+            DisplayGameMessage();
+            for (int cursorLeft = 0; cursorLeft < WindowSize/2; cursorLeft+=5)
             {
                 DisplayRobot(cursorLeft, 10);
                 Thread.Sleep(400);
                 ClearMovement(10,29);
             }
+            DisplayRobot(WindowSize / 2, 10); 
+            Console.ReadKey(); 
         }
 
         public void DisplayUniqueEnding(string sceneID)
@@ -39,6 +41,8 @@ namespace TheSyndicate
             switch (sceneID)
             {
                 case "loveOneself":
+                    Actions.FightAction.WaitForPlayerToPressEnter();
+                    Console.Clear();
                     DisplayLoveYourselfEnding();
                     break;
                 case "animal":
@@ -47,6 +51,8 @@ namespace TheSyndicate
                     DisplayFoundDogEnding();
                     break;
                 case "toaster":
+                    Actions.FightAction.WaitForPlayerToPressEnter();
+                    Console.Clear();
                     DisplayFoundToasterEnding();
                     break;
                 default:
