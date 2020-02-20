@@ -41,11 +41,11 @@ namespace TheSyndicate
         {
             if (Is_Windows)
             {
-                return @"..\..\..\assets\story.json";
+                return @"assets\story.json";
             }
             else
             {
-                return @"../../../assets/story.json";
+                return @"assets/story.json";
             }
         }
 
@@ -141,12 +141,12 @@ namespace TheSyndicate
         private void PlaySoundEffect()
         {
             // Sound Effects from SoundBible & Zapsplat 
-            if (this.CurrentScene.Id == "animal") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectBark.mp3"); }
-            else if (this.CurrentScene.Id == "dead") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectPowerDown.mp3"); }
-            else if (this.CurrentScene.Id == "fight") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectFight.mp3"); }
-            else if (this.CurrentScene.Id == "forest") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectNature.mp3"); }
-            else if (this.CurrentScene.Id == "web") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectUpload.mp3"); }
-            else if (this.CurrentScene.Id == "recyclerTruck") { Sounds.PlaySound(@"..\..\..\SoundEffects\SoundEffectRecycler.mp3"); }
+            if (this.CurrentScene.Id == "animal") { Sounds.PlaySound(@"SoundEffects\SoundEffectBark.mp3"); }
+            else if (this.CurrentScene.Id == "dead") { Sounds.PlaySound(@"SoundEffects\SoundEffectPowerDown.mp3"); }
+            else if (this.CurrentScene.Id == "fight") { Sounds.PlaySound(@"SoundEffects\SoundEffectFight.mp3"); }
+            else if (this.CurrentScene.Id == "forest") { Sounds.PlaySound(@"SoundEffects\SoundEffectNature.mp3"); }
+            else if (this.CurrentScene.Id == "web") { Sounds.PlaySound(@"SoundEffects\SoundEffectUpload.mp3"); }
+            else if (this.CurrentScene.Id == "recyclerTruck") { Sounds.PlaySound(@"SoundEffects\SoundEffectRecycler.mp3"); }
         }
 
         private void PlayFinalScene()
