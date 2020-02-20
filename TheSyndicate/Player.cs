@@ -104,6 +104,7 @@ namespace TheSyndicate
             //Max amount of "life" being displayed is 37 characters long
             //We set MAX_BATTERY_POWER to 4 at begining of game
             //Therefore the number of '▒' characters to display (int amountOfPowerToDisplay) is 9 * 4 + 1 = 37
+            if (this.BatteryPower <= -1) { this.BatteryPower = MAXIMUM_BATTERY_POWER; }
             int amountOfPowerToDisplay = 9 * this.BatteryPower + 1;
             //And the number of white spaces to display as the player loses
             //life is the difference between max life (37) and amountOfPowerToDisplay
