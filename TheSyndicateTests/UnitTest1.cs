@@ -18,7 +18,9 @@ public class UnitTest1
                                         "You have uploaded yourself to The Syndicate's network. This is a dangerous place for you due to the multiple firewalls in place. It is only a matter of time before your code is located and erased, so you mustn't stay long. Choose wisely.",
                                         arrText,
                                         arrDestinations,
-                                        false);
+                                        false,
+                                        " ",
+                                        "white");
 
             Assert.AreEqual("web", testScene.Id);
             Assert.AreEqual(2, testScene.Destinations.Length);
@@ -58,7 +60,9 @@ public class UnitTest1
                                         "You have uploaded yourself to The Syndicate's network. This is a dangerous place for you due to the multiple firewalls in place. It is only a matter of time before your code is located and erased, so you mustn't stay long. Choose wisely.",
                                         arrText,
                                         arrDestinations,
-                                        false);
+                                        false,
+                                        " ",
+                                        "white");
 
             Assert.IsTrue(testScene.IsValidInput(0));
             Assert.IsTrue(testScene.IsValidInput(1));
